@@ -1,0 +1,10 @@
+{
+  "env": {
+    "local": {
+      "streamServiceUrl": "http://localhost:5000/api"
+    },
+    "prod": {
+      "streamServiceUrl": "http://prodA-stream-machine.ap-southeast-2.elasticbeanstalk.com/api"
+    }
+  }
+}
