@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import CorrectAnswer from "./CorrectAnswer";
 import WrongAnswer from "./WrongAnswer";
+import { getAnswer } from '../../utils/questionUtils'
 
 
 const AnswerState = {
@@ -11,16 +12,17 @@ const AnswerState = {
     isWrongAnswer: answerState => answerState === AnswerState.WRONG,
 }
 
-function Question() {
-    const [answer, setAnswer] = useState('')
+function Question(props) {
+    const [userAnswer, setUserAnswer] = useState('')
     const [answerState, setAnswerState] = useState(AnswerState.NONE)
+    const [question] = useState(props.onNextQuestion)
 
     const answerChangeHandler = (event) => {
-        setAnswer(event.target.value)
+        setUserAnswer(event.target.value)
     }
 
     const checkAnswerHandler = () => {
-        if (answer === '5') {
+        if (getAnswer(question) == userAnswer) {
             setAnswerState(AnswerState.CORRECT)
         } else {
             setAnswerState(AnswerState.WRONG)
@@ -29,7 +31,7 @@ function Question() {
 
     return (
         <>
-            <div>2 + 3 =</div>
+            <div>{`${question.join(' + ')} = `}</div>
             <label htmlFor='answer-input'>Enter your answer</label>
             <input id='answer-input' type='number' onChange={answerChangeHandler} />
             <button onClick={checkAnswerHandler}>Check Answer</button>
