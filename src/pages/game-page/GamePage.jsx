@@ -1,7 +1,8 @@
 import {useEffect, useRef, useState} from 'react'
-import IntervalButton from './IntervalButton'
-import Question from './Question'
-import { generateNextQuestion } from '../../utils/questionUtils'
+import IntervalButton from './components/IntervalButton'
+import Question from './components/question/Question'
+import { generateQuestion } from '../../utils/questionUtils'
+import GameBoard from "./components/game-board/GameBoard";
 
 const GameState = {
     stopped: 'stopped',
@@ -40,7 +41,7 @@ function GamePage() {
     }
 
     const renderQuestion = () => {
-        return <Question onNextQuestion={generateNextQuestion} />
+        return <GameBoard />
     }
 
     const renderView = () => {

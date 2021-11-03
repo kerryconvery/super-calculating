@@ -1,80 +1,81 @@
-import { render, screen, act, waitFor } from '@testing-library/react'
+import {render, screen, act, waitFor, fireEvent} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import GamePage from './GamePage'
+import * as questionUtils from '../../utils/questionUtils'
+import {answerTheQuestionWith} from "../../utils/testUtils";
 
 jest.useFakeTimers()
 
 describe('When playing the game', () => {
-    it('displays a start button', () => {
-        const { startButton } = renderGamePage()
-
-        expect(startButton).toBeInTheDocument()
-    })
+    beforeEach(startTheGame)
 
     describe('when the start button is pressed', () => {
-        it('Counts down from 3', async () => {
-            const { startButton } = renderGamePage()
-
-            userEvent.click(startButton)
-
+        it('Counts down from 3', () => {
             expect(screen.getByText('3')).toBeInTheDocument()
         })
 
-        it('Counts down from 3 to 2', async() => {
-            const { startButton } = renderGamePage()
-
-            userEvent.click(startButton)
-
-            await  waitFor(() => {
-                jest.advanceTimersByTime(1000);
-            })
+        it('Counts down from 3 to 2', async () => {
+            await waitForTwo()
 
             expect(screen.getByText('2')).toBeInTheDocument()
         })
 
         it('Counts down from 2 to 1', async () => {
-            const { startButton } = renderGamePage()
-
-            userEvent.click(startButton)
-
-            await  waitFor(() => {
-                jest.advanceTimersByTime(2000);
-            })
+            await waitForOne()
 
             expect(screen.getByText('1')).toBeInTheDocument()
         })
 
         it('Counts down from 1 to START', async () => {
-            const { startButton } = renderGamePage()
-
-            userEvent.click(startButton)
-
-            await  waitFor(() => {
-                jest.advanceTimersByTime(3000);
-            })
+            await waitForGo()
 
             expect(screen.getByText('GO!')).toBeInTheDocument()
         })
 
         it('displays a mathematics question when the count down reaches zero', async () => {
-            const { startButton } = renderGamePage()
+            await waitForQuestion()
 
-            userEvent.click(startButton)
+            expect(screen.getByText('5 + 8 =')).toBeInTheDocument()
+        })
+    })
 
-            await  waitFor(() => {
-                jest.advanceTimersByTime(4000);
-            })
+    describe('When the user enters an answer and presses Check Answer', () => {
+        it('displays whether the entered answer is right or wrong', async () => {
+            await waitForQuestion()
 
-            expect(screen.getByText('2 + 3 =')).toBeInTheDocument()
+            answerTheQuestionWith('13')
+
+            expect(screen.getByText('Correct!!')).toBeInTheDocument()
         })
     })
 })
 
-function renderGamePage() {
-    render(<GamePage />)
+async function startTheGame() {
+    await renderGamePage()
 
-    return {
-        startButton: screen.getByText('Start')
-    }
+    return pressTheStartButton()
 }
 
+function renderGamePage() {
+    jest.spyOn(questionUtils, 'generateQuestion')
+        .mockReturnValue({ components: [5, 8], answer: 13 })
+
+    render(<GamePage />)
+}
+
+function pressTheStartButton() {
+    userEvent.click(screen.getByText('Start'))
+}
+
+const waitForTwo = waitForCountdown(1000)
+const waitForOne = waitForCountdown(2000)
+const waitForGo = waitForCountdown(3000)
+const waitForQuestion = waitForCountdown(4000)
+
+function waitForCountdown(period) {
+    return async function() {
+        await waitFor(() => {
+            jest.advanceTimersByTime(period);
+        })
+    }
+}
