@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { generateQuestion } from "../../../../utils/questionUtils";
+import { generateQuestion } from "../../../utils/questionUtils";
 
 function Question(props) {
     const [question] = useState(props.onNextQuestion())

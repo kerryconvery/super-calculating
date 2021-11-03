@@ -1,6 +1,6 @@
-import Answer from "../answer/Answer";
-import Question from "../question/Question";
-import { generateQuestion } from "../../../../utils/questionUtils";
+import Answer from "./answer/Answer";
+import Question from "./Question";
+import { generateQuestion } from "../../../utils/questionUtils";
 
 function GameBoard() {
     return (

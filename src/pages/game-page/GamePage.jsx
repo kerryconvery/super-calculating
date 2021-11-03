@@ -1,8 +1,8 @@
 import {useEffect, useRef, useState} from 'react'
 import IntervalButton from './components/IntervalButton'
-import Question from './components/question/Question'
+import Question from './components/Question'
 import { generateQuestion } from '../../utils/questionUtils'
-import GameBoard from "./components/game-board/GameBoard";
+import GameBoard from "./components/GameBoard";
 
 const GameState = {
     stopped: 'stopped',
