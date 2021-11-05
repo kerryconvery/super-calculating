@@ -32,7 +32,7 @@ module.exports = {
   },
   output: {
     filename: '[name].[contenthash:8].js',
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'docs'),
     clean: true,
     publicPath: '/'
   },
