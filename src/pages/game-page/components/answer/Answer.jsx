@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import CorrectAnswer from "./CorrectAnswer";
 import WrongAnswer from "./WrongAnswer";
+import AnswerLayout from "./AnswerLayout";
 
 const AnswerState = {
     NONE: 'none',
@@ -29,9 +30,10 @@ function Answer(props) {
 
     return (
         <>
-            <label htmlFor='answer-input'>Enter your answer</label>
-            <input id='answer-input' type='number' onChange={answerChangeHandler} />
-            <button onClick={checkAnswerHandler}>Check Answer</button>
+            <AnswerLayout
+                answerInput={<input type='number' placeholder='Enter your answer' onChange={answerChangeHandler} />}
+                answerButton={<button onClick={checkAnswerHandler}>Check Answer</button>}
+            />
             <CorrectAnswer show={AnswerState.isCorrectAnswer(answerState)} />
             <WrongAnswer show={AnswerState.isWrongAnswer(answerState)} />
         </>
