@@ -27,7 +27,7 @@ module.exports = {
     filename: 'index.js',
     path: path.resolve(__dirname, 'docs'),
     clean: true,
-    publicPath: '/'
+    publicPath: 'auto'
   },
   plugins: [
     new webpack.IgnorePlugin({ resourceRegExp: /^\.\/locale$/, contextRegExp: /moment$/ }),
