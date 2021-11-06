@@ -6,23 +6,28 @@ import CorrectAnswer from "./CorrectAnswer";
 import WrongAnswer from "./WrongAnswer";
 
 function GameBoard() {
+    const [ nextQuestion ] = useState(generateQuestion())
     const [answerState, setAnswerState] = useState(AnswerState.NONE)
 
-    return AnswerStateJsxMap[answerState](setAnswerState)
-}
-
-const AnswerStateJsxMap = {
-    [AnswerState.NONE]: (onUpdateAnswerState) => (
-        <Question onNextQuestion={generateQuestion}>
-            {answer => <Answer answer={answer} onUpdateAnswerState={onUpdateAnswerState}  />}
-        </Question>
-    ),
-    [AnswerState.CORRECT]: () => (
-        <CorrectAnswer />
-    ),
-    [AnswerState.WRONG]: () => (
-        <WrongAnswer />
-    )
+    switch (answerState) {
+        case AnswerState.NONE: {
+            return (
+                <>
+                    <Question question={nextQuestion.components} />
+                    <Answer answer={nextQuestion.answer} onUpdateAnswerState={setAnswerState}  />
+                </>
+            )
+        }
+        case AnswerState.CORRECT: {
+            return <CorrectAnswer />
+        }
+        case AnswerState.WRONG: {
+            return <WrongAnswer correctAnswer={nextQuestion.answer} />
+        }
+        default: {
+            throw new Error(`Unsupported answer state ${answerState}`)
+        }
+    }
 }
 
 export default GameBoard

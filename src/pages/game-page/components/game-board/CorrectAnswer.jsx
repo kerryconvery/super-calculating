@@ -1,5 +1,7 @@
+import PageCenter from "./PageCenter";
+
 function CorrectAnswer() {
-    return 'Correct!!'
+    return <PageCenter>Correct!!</PageCenter>
 }
 
 export default CorrectAnswer

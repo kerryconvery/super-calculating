@@ -48,12 +48,14 @@ describe('When playing the game', () => {
             expect(screen.getByText('Correct!!')).toBeInTheDocument()
         })
 
-        it('displays that the answer is wrong', async () => {
+        it('displays that the answer is wrong and the correct answer', async () => {
             await waitForQuestion()
 
             answerTheQuestionWith('10')
 
             expect(screen.getByText('Oh No!!')).toBeInTheDocument()
+            expect(screen.getByText('The correct answer is 13')).toBeInTheDocument()
+
         })
     })
 })
