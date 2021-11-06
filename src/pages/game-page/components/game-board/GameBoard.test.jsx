@@ -53,7 +53,7 @@ function renderGameBoard() {
 
 function createQuestionGenerator() {
     let nextQuestionIndex = 0
-    
+
     return () => {
         const nextQuestion = questions[nextQuestionIndex]
 
