@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import AnswerLayout from "./AnswerLayout";
+import ValidationError from "./ValidationError";
 
 export const AnswerState = {
     NONE: 'none',
@@ -9,14 +10,23 @@ export const AnswerState = {
 
 function Answer(props) {
     const [userAnswer, setUserAnswer] = useState('')
-    const [correctAnswer] = useState(props.answer)
+    const [shouldShowValidationErrors, setShouldShowValidationErrors] = useState(false)
 
     const answerChangeHandler = (event) => {
+        if (shouldShowValidationErrors) {
+            setShouldShowValidationErrors(false)
+        }
+
         setUserAnswer(event.target.value)
     }
 
     const checkAnswerHandler = () => {
-        if (correctAnswer == userAnswer) {
+        if (userAnswer === '') {
+            setShouldShowValidationErrors(true)
+            return
+        }
+
+        if (props.answer == userAnswer) {
             props.onUpdateAnswerState(AnswerState.CORRECT)
         } else {
             props.onUpdateAnswerState(AnswerState.WRONG)
@@ -24,12 +34,11 @@ function Answer(props) {
     }
 
     return (
-        <>
-            <AnswerLayout
-                answerInput={<input type='number' placeholder='Enter your answer' onChange={answerChangeHandler} />}
-                answerButton={<button onClick={checkAnswerHandler}>Check Answer</button>}
-            />
-        </>
+        <AnswerLayout
+            answerInput={<input type='number' placeholder='Enter your answer' onChange={answerChangeHandler} />}
+            answerButton={<button onClick={checkAnswerHandler}>Check Answer</button>}
+            errorMessage={<ValidationError show={shouldShowValidationErrors}>Please enter an answer first</ValidationError>}
+        />
     )
 }
 

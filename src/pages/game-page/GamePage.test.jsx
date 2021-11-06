@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event'
 import GamePage from './GamePage'
 import * as questionUtils from '../../utils/questionUtils'
 import {answerTheQuestionWith} from "../../utils/testUtils";
+import {TwoDigitQuestion} from "../../utils/questionUtils";
 
 jest.useFakeTimers()
 
@@ -43,7 +44,7 @@ describe('When playing the game', () => {
         it('displays that the answer is correct', async () => {
             await waitForQuestion()
 
-            answerTheQuestionWith('13')
+            await answerTheQuestionWith('13')
 
             expect(screen.getByText('Correct!!')).toBeInTheDocument()
         })
@@ -51,11 +52,10 @@ describe('When playing the game', () => {
         it('displays that the answer is wrong and the correct answer', async () => {
             await waitForQuestion()
 
-            answerTheQuestionWith('10')
+            await answerTheQuestionWith('10')
 
             expect(screen.getByText('Oh No!!')).toBeInTheDocument()
             expect(screen.getByText('The correct answer is 13')).toBeInTheDocument()
-
         })
     })
 })
@@ -68,7 +68,7 @@ async function startTheGame() {
 
 function renderGamePage() {
     jest.spyOn(questionUtils, 'generateQuestion')
-        .mockReturnValue({ components: [5, 8], answer: 13 })
+        .mockReturnValue(TwoDigitQuestion.set(5, 8))
 
     render(<GamePage />)
 }

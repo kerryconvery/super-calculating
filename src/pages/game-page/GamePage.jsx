@@ -41,7 +41,7 @@ function GamePage() {
     }
 
     const renderQuestion = () => {
-        return <GameBoard />
+        return <GameBoard onAskNextQuestion={generateQuestion} />
     }
 
     const renderView = () => {

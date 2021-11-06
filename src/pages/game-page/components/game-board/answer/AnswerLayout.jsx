@@ -5,6 +5,9 @@ function AnswerLayout(props) {
             <div>
                 {props.answerButton}
             </div>
+            <div>
+                {props.errorMessage}
+            </div>
         </>
     )
 }
