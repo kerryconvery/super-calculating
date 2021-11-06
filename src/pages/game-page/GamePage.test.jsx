@@ -39,13 +39,21 @@ describe('When playing the game', () => {
         })
     })
 
-    describe('When the user enters an answer and presses Check Answer', () => {
-        it('displays whether the entered answer is right or wrong', async () => {
+    describe('When the user enters an answer and presses the Check Answer button', () => {
+        it('displays that the answer is correct', async () => {
             await waitForQuestion()
 
             answerTheQuestionWith('13')
 
             expect(screen.getByText('Correct!!')).toBeInTheDocument()
+        })
+
+        it('displays that the answer is wrong', async () => {
+            await waitForQuestion()
+
+            answerTheQuestionWith('10')
+
+            expect(screen.getByText('Oh No!!')).toBeInTheDocument()
         })
     })
 })
