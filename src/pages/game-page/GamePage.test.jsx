@@ -2,7 +2,6 @@ import {render, screen, act, waitFor, fireEvent} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import GamePage from './GamePage'
 import * as questionUtils from '../../utils/questionUtils'
-import {answerTheQuestionWith} from "../../utils/testUtils";
 import {TwoDigitQuestion} from "../../utils/questionUtils";
 
 jest.useFakeTimers()
@@ -37,25 +36,6 @@ describe('When playing the game', () => {
             await waitForQuestion()
 
             expect(screen.getByText('5 + 8 =')).toBeInTheDocument()
-        })
-    })
-
-    describe('When the user enters an answer and presses the Check Answer button', () => {
-        it('displays that the answer is correct', async () => {
-            await waitForQuestion()
-
-            await answerTheQuestionWith('13')
-
-            expect(screen.getByText('Correct!!')).toBeInTheDocument()
-        })
-
-        it('displays that the answer is wrong and the correct answer', async () => {
-            await waitForQuestion()
-
-            await answerTheQuestionWith('10')
-
-            expect(screen.getByText('Oh No!!')).toBeInTheDocument()
-            expect(screen.getByText('The correct answer is 13')).toBeInTheDocument()
         })
     })
 })

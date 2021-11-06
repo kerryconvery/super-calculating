@@ -44,18 +44,15 @@ function GamePage() {
         return <GameBoard onAskNextQuestion={generateQuestion} />
     }
 
-    const renderView = () => {
-        switch (gameState) {
-            case GameState.starting:
-                return renderCountDownButton()
-            case GameState.started:
-                return renderQuestion()
-            default:
-                return renderCountDownButton()
-        }
+    switch (gameState) {
+        case GameState.stopped:
+        case GameState.starting:
+            return renderCountDownButton()
+        case GameState.started:
+            return renderQuestion()
+        default:
+            throw new Error(`Unknown game state ${gameState}`)
     }
-
-    return renderView()
 }
 
 export default GamePage

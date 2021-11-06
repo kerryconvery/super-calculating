@@ -10,6 +10,21 @@ const questions = [TwoDigitQuestion.set(5, 8), TwoDigitQuestion.set(12, 3)]
 describe('Game board', () => {
     beforeEach(renderGameBoard)
 
+    describe('When the user enters an answer and presses the Check Answer button', () => {
+        it('displays that the answer is correct', async () => {
+            await answerTheQuestionWith('13')
+
+            expect(screen.getByText('Correct!!')).toBeInTheDocument()
+        })
+
+        it('displays that the answer is wrong and the correct answer', async () => {
+            await answerTheQuestionWith('10')
+
+            expect(screen.getByText('Oh No!!')).toBeInTheDocument()
+            expect(screen.getByText('The correct answer is 13')).toBeInTheDocument()
+        })
+    })
+
     describe('When the user clicks on the Check Answer button without entering an answer', () => {
         it('tells the user to enter an answer', async () => {
             await clickTheCheckAnswerButton()
