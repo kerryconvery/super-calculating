@@ -1,8 +1,9 @@
-import {render, screen, act, waitFor, fireEvent} from '@testing-library/react'
+import {render, screen, act, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import GamePage from './GamePage'
+import GameController from './GameController'
 import * as questionUtils from '../../utils/questionUtils'
 import {TwoDigitQuestion} from "../../utils/questionUtils";
+import {answerTheQuestionWith, clickTheNextButton} from "../../utils/testUtils";
 
 jest.useFakeTimers()
 
@@ -38,6 +39,17 @@ describe('When playing the game', () => {
             expect(screen.getByText('5 + 8 =')).toBeInTheDocument()
         })
     })
+
+    describe('when playing the game', () => {
+        it('displays The end when all the questions have been asked', async () => {
+            await waitForQuestion()
+
+            await answerTheQuestionWith('10')
+            await clickTheNextButton()
+
+            expect(screen.getByText('The end')).toBeInTheDocument()
+        })
+    })
 })
 
 async function startTheGame() {
@@ -50,7 +62,7 @@ function renderGamePage() {
     jest.spyOn(questionUtils, 'generateQuestion')
         .mockReturnValue(TwoDigitQuestion.set(5, 8))
 
-    render(<GamePage />)
+    return render(<GameController numberOfQuestions={1} />)
 }
 
 function pressTheStartButton() {

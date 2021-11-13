@@ -18,3 +18,9 @@ export function clickTheCheckAnswerButton() {
         userEvent.click(checkAnswerButton)
     })
 }
+
+export function clickTheNextButton()  {
+    return waitFor(() => {
+        userEvent.click(screen.getByText('Next question'))
+    })
+}

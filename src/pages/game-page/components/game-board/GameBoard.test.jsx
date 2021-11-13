@@ -1,8 +1,6 @@
-import {answerTheQuestionWith, clickTheCheckAnswerButton} from "../../../../utils/testUtils";
+import {answerTheQuestionWith, clickTheCheckAnswerButton, clickTheNextButton} from "../../../../utils/testUtils";
 import {render, screen, waitFor} from "@testing-library/react";
-import * as questionUtils from "../../../../utils/questionUtils";
 import GameBoard from "./GameBoard";
-import userEvent from "@testing-library/user-event";
 import {TwoDigitQuestion} from "../../../../utils/questionUtils";
 
 const questions = [TwoDigitQuestion.set(5, 8), TwoDigitQuestion.set(12, 3)]
@@ -63,7 +61,7 @@ describe('Game board', () => {
 })
 
 function renderGameBoard() {
-    render(<GameBoard onAskNextQuestion={createQuestionGenerator()} />)
+    render(<GameBoard maxQuestions={2} onAskNextQuestion={createQuestionGenerator()} />)
 }
 
 function createQuestionGenerator() {
@@ -76,10 +74,4 @@ function createQuestionGenerator() {
 
         return nextQuestion
     }
-}
-
-function clickTheNextButton()  {
-    return waitFor(() => {
-        userEvent.click(screen.getByText('Next question'))
-    })
 }

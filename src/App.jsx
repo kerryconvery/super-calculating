@@ -1,10 +1,10 @@
 import React from 'react';
-import GamePage from './pages/game-page/GamePage'
+import GameController from './pages/game-page/GameController'
 
 const App = () => (
     <>
         <h1>Super Calculating</h1>
-        <GamePage />
+        <GameController numberOfQuestions={10} />
     </>
 )
 
