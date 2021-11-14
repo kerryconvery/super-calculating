@@ -6,10 +6,12 @@ import GamePresenter, {GameState} from "./GamePresenter";
 import ScoreBoard from "./components/ScoreBoard";
 import InGameStatistics from "./components/InGameStatistics";
 import useGameStatisticsCollector from "./game-staticstics/useGameStatisticsCollector";
+import useStopWatchTimer from "./components/game-board/timers/useStopWatchTimer";
 
 const startupSteps = ['Start', '3', '2', '1', 'GO!']
 
 function GameController({ numberOfQuestions }) {
+    const { elapsedSeconds, resumeTimer } = useStopWatchTimer()
     const [gameState, setGametState] = useState(GameState.stopped)
     const { gameStatistics, onAskQuestion, onQuestionAnswered } = useGameStatisticsCollector(numberOfQuestions)
     const unmountRef = useRef(false)
@@ -23,6 +25,7 @@ function GameController({ numberOfQuestions }) {
     const startGame = () => {
         if (componentIsMounted()) {
             setGametState(GameState.started)
+            resumeTimer()
         }
     }
 
@@ -49,6 +52,7 @@ function GameController({ numberOfQuestions }) {
                 gameState={gameState}
                 inGameStats={
                     <InGameStatistics
+                        elapsedSeconds={elapsedSeconds}
                         questionNumber={gameStatistics.numberOfQuestionsAsked}
                         totalNumberOfQuestions={numberOfQuestions}
                     />

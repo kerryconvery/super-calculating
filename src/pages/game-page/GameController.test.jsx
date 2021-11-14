@@ -47,6 +47,26 @@ describe('When playing the game', () => {
             expect(screen.getByText('Question 1 of 2')).toBeInTheDocument()
         })
 
+        it('displays the initial elapsed time as zero', async () => {
+            await waitForQuestion()
+
+            expect(screen.getByText('Elapsed time: 00:00')).toBeInTheDocument()
+        })
+
+        it('displays the elapsed number of seconds since the game started', async () => {
+            await waitForQuestion()
+
+            act(() => {
+                jest.advanceTimersByTime(1000)
+            })
+
+            act(() => {
+                jest.advanceTimersByTime(1000)
+            })
+
+            expect(screen.getByText('Elapsed time: 00:02')).toBeInTheDocument()
+        })
+
         it('displays the updated question number out of the total number of questions', async () => {
             await waitForQuestion()
 
