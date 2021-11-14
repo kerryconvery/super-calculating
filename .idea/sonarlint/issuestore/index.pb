@@ -9,10 +9,6 @@ t
 Dsrc/pages/game-page/components/game-board/answer/ValidationError.jsx,c/d/cdf6607e009b3b54ab95dd117bbf64c9c27408f1
 q
 Asrc/pages/game-page/components/game-board/answer/AnswerLayout.jsx,4/3/432532baecb17893dc884d295237eb503989b370
-h
-8src/pages/game-page/components/game-board/NextButton.jsx,6/a/6af63a80173ad72ea4941a2d28a02e6d41ab5b68
-k
-;src/pages/game-page/components/game-board/answer/Answer.jsx,1/7/17fa158634514ec0998ef43e89c864ab97432b13
 <
 package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
 >

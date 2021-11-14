@@ -2,16 +2,21 @@ import Answer, { AnswerState } from "./answer/Answer";
 import Question from "./Question";
 import { TwoDigitQuestion} from "../../../../utils/questionUtils";
 import {useEffect, useState} from "react";
-import CorrectAnswer from "./CorrectAnswer";
-import WrongAnswer from "./WrongAnswer";
+import NextQuestionOrEndGame from "./buttons/NextQuestionOfEndGame";
+import CorrectOrWrongAnswer from "./correct-or-wrong-answer/CorrectOrWrongAnswer";
 
-function GameBoard(props) {
-    const { nextQuestion, askNextQuestion } = useNextQuestion(props.onAskNextQuestion)
-    const [answerState, setAnswerState] = useState(AnswerState.NONE)
+function GameBoard({ hasMoreQuestions, onAskNextQuestion, onQuestionAnswered, onEndGame }) {
+    const { nextQuestion, askNextQuestion } = useNextQuestion(onAskNextQuestion)
+    const [ answerState, setAnswerState ] = useState(AnswerState.NONE)
 
     const handleNextQuestion = () => {
         setAnswerState(AnswerState.NONE)
         askNextQuestion()
+    }
+
+    const handleQuestionAnswered = (answerState) => {
+        onQuestionAnswered()
+        setAnswerState(answerState)
     }
 
     switch (answerState) {
@@ -19,15 +24,22 @@ function GameBoard(props) {
             return (
                 <>
                     <Question question={nextQuestion} />
-                    <Answer answer={nextQuestion.answer} onUpdateAnswerState={setAnswerState}  />
+                    <Answer answer={nextQuestion.answer} onUpdateAnswerState={handleQuestionAnswered}  />
                 </>
             )
         }
-        case AnswerState.CORRECT: {
-            return <CorrectAnswer onNext={handleNextQuestion} />
-        }
+        case AnswerState.CORRECT:
         case AnswerState.WRONG: {
-            return <WrongAnswer correctAnswer={nextQuestion.answer} onNext={handleNextQuestion} />
+            return  (
+                <>
+                    <CorrectOrWrongAnswer answerState={answerState} correctAnswer={nextQuestion.answer} />
+                    <NextQuestionOrEndGame
+                        hasMoreQuestions={hasMoreQuestions}
+                        onNextQuestion={handleNextQuestion}
+                        onEndGame={onEndGame}
+                    />
+                </>
+            )
         }
         default: {
             throw new Error(`Unsupported answer state ${answerState}`)

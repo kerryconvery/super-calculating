@@ -19,8 +19,14 @@ export function clickTheCheckAnswerButton() {
     })
 }
 
-export function clickTheNextButton()  {
+export function clickTheNextButton() {
     return waitFor(() => {
         userEvent.click(screen.getByText('Next question'))
+    })
+}
+
+export function clickTheEndGameButton() {
+    return waitFor(() => {
+        userEvent.click(screen.getByText('End game'))
     })
 }

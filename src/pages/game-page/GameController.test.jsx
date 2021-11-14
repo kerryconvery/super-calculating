@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import GameController from './GameController'
 import * as questionUtils from '../../utils/questionUtils'
 import {TwoDigitQuestion} from "../../utils/questionUtils";
-import {answerTheQuestionWith, clickTheNextButton} from "../../utils/testUtils";
+import {answerTheQuestionWith, clickTheEndGameButton, clickTheNextButton} from "../../utils/testUtils";
 
 jest.useFakeTimers()
 
@@ -41,11 +41,29 @@ describe('When playing the game', () => {
     })
 
     describe('when playing the game', () => {
-        it('displays The end when all the questions have been asked', async () => {
+        it('displays the initial question number out of the total number of questions', async () => {
+            await waitForQuestion()
+
+            expect(screen.getByText('Question 1 of 2')).toBeInTheDocument()
+        })
+
+        it('displays the updated question number out of the total number of questions', async () => {
             await waitForQuestion()
 
             await answerTheQuestionWith('10')
             await clickTheNextButton()
+
+            expect(screen.getByText('Question 2 of 2')).toBeInTheDocument()
+        })
+
+        it('displays the end when all the questions have been asked', async () => {
+            await waitForQuestion()
+
+            await answerTheQuestionWith('10')
+            await clickTheNextButton()
+
+            await answerTheQuestionWith('10')
+            await clickTheEndGameButton()
 
             expect(screen.getByText('The end')).toBeInTheDocument()
         })
@@ -62,7 +80,7 @@ function renderGamePage() {
     jest.spyOn(questionUtils, 'generateQuestion')
         .mockReturnValue(TwoDigitQuestion.set(5, 8))
 
-    return render(<GameController numberOfQuestions={1} />)
+    return render(<GameController numberOfQuestions={2} />)
 }
 
 function pressTheStartButton() {

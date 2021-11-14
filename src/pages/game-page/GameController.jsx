@@ -3,14 +3,15 @@ import IntervalButton from './components/IntervalButton'
 import { generateQuestion } from '../../utils/questionUtils'
 import GameBoard from "./components/game-board/GameBoard";
 import GamePresenter, {GameState} from "./GamePresenter";
-import useQuestionCountTimer from "./timers/questionCountTimer";
 import ScoreBoard from "./components/ScoreBoard";
+import InGameStatistics from "./components/InGameStatistics";
+import useGameStatisticsCollector from "./game-staticstics/useGameStatisticsCollector";
 
 const startupSteps = ['Start', '3', '2', '1', 'GO!']
 
 function GameController({ numberOfQuestions }) {
     const [gameState, setGametState] = useState(GameState.stopped)
-    const { onAskQuestion } = useQuestionCountTimer(numberOfQuestions, () => setGametState(GameState.completed))
+    const { gameStatistics, onAskQuestion, onQuestionAnswered } = useGameStatisticsCollector(numberOfQuestions)
     const unmountRef = useRef(false)
 
     useEffect(() => {
@@ -25,6 +26,10 @@ function GameController({ numberOfQuestions }) {
         }
     }
 
+    const endGame = () => {
+        setGametState(GameState.completed)
+    }
+
     const componentIsMounted = () => {
         return unmountRef.current === false
     }
@@ -33,17 +38,33 @@ function GameController({ numberOfQuestions }) {
         unmountRef.current = true
     }
 
-    const generateNextQuestion = () => {
+    const handleAskNextQuestion = () => {
         onAskQuestion()
         return generateQuestion()
     }
+
     return (
-        <GamePresenter
-            gameState={gameState}
-            startButton={<IntervalButton text={startupSteps} onCountDownCompleted={startGame} />}
-            gameBoard={<GameBoard onAskNextQuestion={generateNextQuestion} />}
-            scoreBoard={<ScoreBoard />}
-        />
+        <>
+            <GamePresenter
+                gameState={gameState}
+                inGameStats={
+                    <InGameStatistics
+                        questionNumber={gameStatistics.numberOfQuestionsAsked}
+                        totalNumberOfQuestions={numberOfQuestions}
+                    />
+                }
+                startButton={<IntervalButton text={startupSteps} onCountDownCompleted={startGame} />}
+                gameBoard={
+                    <GameBoard
+                        hasMoreQuestions={gameStatistics.numberOfQuestionsRemaining > 0}
+                        onAskNextQuestion={handleAskNextQuestion}
+                        onQuestionAnswered={onQuestionAnswered}
+                        onEndGame={endGame}
+                    />
+                }
+                scoreBoard={<ScoreBoard />}
+            />
+        </>
     )
 }
 

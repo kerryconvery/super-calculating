@@ -6,13 +6,18 @@ export const GameState = {
     completed: 'completed'
 }
 
-function GamePresenter({ gameState, gameBoard, startButton, scoreBoard }) {
+function GamePresenter({ gameState, inGameStats, gameBoard, startButton, scoreBoard }) {
     const gameStateToView = () => {
         switch (gameState) {
             case GameState.stopped:
                 return startButton
             case GameState.started:
-                return gameBoard
+                return (
+                    <>
+                        {inGameStats}
+                        {gameBoard}
+                    </>
+                )
             case GameState.completed:
                 return scoreBoard
             default:
