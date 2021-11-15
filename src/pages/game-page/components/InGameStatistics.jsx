@@ -1,13 +1,9 @@
-function InGameStatistics({ elapsedSeconds, questionNumber, totalNumberOfQuestions }) {
-    const formatElapsedSeconds = () => {
-        return new Date(elapsedSeconds * 1000)
-            .toISOString()
-            .substr(14, 5)
-    }
+import {formatElapsedSeconds} from "../../../utils/timeUtils";
 
+function InGameStatistics({ elapsedSeconds, questionNumber, totalNumberOfQuestions }) {
     return (
         <>
-            <div>{`Elapsed time: ${formatElapsedSeconds()}`}</div>
+            <div>{`Elapsed time: ${formatElapsedSeconds(elapsedSeconds)}`}</div>
             <div>{`Question ${questionNumber} of ${totalNumberOfQuestions}`}</div>
         </>
     )

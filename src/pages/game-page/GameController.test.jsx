@@ -94,8 +94,12 @@ describe('When playing the game', () => {
             expect(screen.getByText('Question 2 of 2')).toBeInTheDocument()
         })
 
-        it('displays the end when all the questions have been asked', async () => {
+        it('displays the score board when all the questions have been answered', async () => {
             await waitForQuestion()
+
+            act(() => {
+                jest.advanceTimersByTime(10000)
+            })
 
             await answerTheQuestionWith('10')
             await clickTheNextButton()
@@ -104,6 +108,7 @@ describe('When playing the game', () => {
             await clickTheEndGameButton()
 
             expect(screen.getByText('The end')).toBeInTheDocument()
+            expect(screen.getByText('Time taken: 00:10')).toBeInTheDocument()
         })
     })
 })

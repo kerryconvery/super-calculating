@@ -72,7 +72,7 @@ function GameController({ numberOfQuestions }) {
                         onEndGame={endGame}
                     />
                 }
-                scoreBoard={<ScoreBoard />}
+                scoreBoard={<ScoreBoard elapsedTime={elapsedSeconds} />}
             />
         </>
     )

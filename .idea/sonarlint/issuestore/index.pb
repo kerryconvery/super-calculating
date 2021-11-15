@@ -28,8 +28,6 @@ J
 src/utils/questionUtils.js,3/8/38e4f83565a284bf72730ff1ba937382321c6c0e
 a
 1src/pages/game-page/components/IntervalButton.jsx,5/3/53fa19cd44180f4d8c9910b74108bff8e062abc0
-;
-src/App.jsx,c/0/c0e9e59a467e1546695bfa22746b302540797a4e
 f
 6src/pages/game-page/components/game-board/Question.jsx,c/e/cee7e0b59c4491bbe919099ddc1899450600f3ef
 s
