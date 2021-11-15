@@ -57,14 +57,32 @@ describe('When playing the game', () => {
             await waitForQuestion()
 
             act(() => {
-                jest.advanceTimersByTime(1000)
+                jest.advanceTimersByTime(2000)
             })
+
+            expect(screen.getByText('Elapsed time: 00:02')).toBeInTheDocument()
+        })
+
+        it('pauses the timer while displaying the result of the answer', async () => {
+            await waitForQuestion()
+
+            act(() => {
+                jest.advanceTimersByTime(2000)
+            })
+
+            await answerTheQuestionWith('10')
+
+            act(() => {
+                jest.advanceTimersByTime(3000)
+            })
+
+            await clickTheNextButton()
 
             act(() => {
                 jest.advanceTimersByTime(1000)
             })
 
-            expect(screen.getByText('Elapsed time: 00:02')).toBeInTheDocument()
+            expect(screen.getByText('Elapsed time: 00:03')).toBeInTheDocument()
         })
 
         it('displays the updated question number out of the total number of questions', async () => {

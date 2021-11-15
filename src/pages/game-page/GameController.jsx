@@ -11,8 +11,8 @@ import useStopWatchTimer from "./components/game-board/timers/useStopWatchTimer"
 const startupSteps = ['Start', '3', '2', '1', 'GO!']
 
 function GameController({ numberOfQuestions }) {
-    const { elapsedSeconds, resumeTimer } = useStopWatchTimer()
-    const [gameState, setGametState] = useState(GameState.stopped)
+    const { elapsedSeconds, resumeTimer, pauseTimer } = useStopWatchTimer()
+    const [ gameState, setGametState ] = useState(GameState.stopped)
     const { gameStatistics, onAskQuestion, onQuestionAnswered } = useGameStatisticsCollector(numberOfQuestions)
     const unmountRef = useRef(false)
 
@@ -42,8 +42,14 @@ function GameController({ numberOfQuestions }) {
     }
 
     const handleAskNextQuestion = () => {
+        resumeTimer()
         onAskQuestion()
         return generateQuestion()
+    }
+
+    const handleQuestionAnswered = () => {
+        pauseTimer()
+        onQuestionAnswered()
     }
 
     return (
@@ -62,7 +68,7 @@ function GameController({ numberOfQuestions }) {
                     <GameBoard
                         hasMoreQuestions={gameStatistics.numberOfQuestionsRemaining > 0}
                         onAskNextQuestion={handleAskNextQuestion}
-                        onQuestionAnswered={onQuestionAnswered}
+                        onQuestionAnswered={handleQuestionAnswered}
                         onEndGame={endGame}
                     />
                 }
