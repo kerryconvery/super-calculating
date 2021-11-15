@@ -44,7 +44,7 @@ describe('When playing the game', () => {
         it('displays the initial question number out of the total number of questions', async () => {
             await waitForQuestion()
 
-            expect(screen.getByText('Question 1 of 2')).toBeInTheDocument()
+            expect(screen.getByText('Question 1 of 3')).toBeInTheDocument()
         })
 
         it('displays the initial elapsed time as zero', async () => {
@@ -91,7 +91,7 @@ describe('When playing the game', () => {
             await answerTheQuestionWith('10')
             await clickTheNextButton()
 
-            expect(screen.getByText('Question 2 of 2')).toBeInTheDocument()
+            expect(screen.getByText('Question 2 of 3')).toBeInTheDocument()
         })
 
         it('displays the score board when all the questions have been answered', async () => {
@@ -101,7 +101,10 @@ describe('When playing the game', () => {
                 jest.advanceTimersByTime(10000)
             })
 
-            await answerTheQuestionWith('10')
+            await answerTheQuestionWith('13')
+            await clickTheNextButton()
+
+            await answerTheQuestionWith('9')
             await clickTheNextButton()
 
             await answerTheQuestionWith('10')
@@ -109,6 +112,11 @@ describe('When playing the game', () => {
 
             expect(screen.getByText('The end')).toBeInTheDocument()
             expect(screen.getByText('Time taken: 00:10')).toBeInTheDocument()
+            expect(screen.getByText('Total number of questions: 3')).toBeInTheDocument()
+            expect(screen.getByText('Number of questions answered correctly: 1')).toBeInTheDocument()
+            expect(screen.getByText('Number of questions answered incorrectly: 2')).toBeInTheDocument()
+            expect(screen.getByText('5 + 8 = 13 - Correct'))
+            expect(screen.getByText('5 + 8 = 10 - Wrong'))
         })
     })
 })
@@ -123,7 +131,7 @@ function renderGamePage() {
     jest.spyOn(questionUtils, 'generateQuestion')
         .mockReturnValue(TwoDigitQuestion.set(5, 8))
 
-    return render(<GameController numberOfQuestions={2} />)
+    return render(<GameController numberOfQuestions={3} />)
 }
 
 function pressTheStartButton() {

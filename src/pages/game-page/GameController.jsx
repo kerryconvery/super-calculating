@@ -7,13 +7,15 @@ import ScoreBoard from "./components/ScoreBoard";
 import InGameStatistics from "./components/InGameStatistics";
 import useGameStatisticsCollector from "./game-staticstics/useGameStatisticsCollector";
 import useStopWatchTimer from "./components/game-board/timers/useStopWatchTimer";
+import useAnswerRecorder from "./game-staticstics/useAnswerRecorder";
 
 const startupSteps = ['Start', '3', '2', '1', 'GO!']
 
 function GameController({ numberOfQuestions }) {
     const { elapsedSeconds, resumeTimer, pauseTimer } = useStopWatchTimer()
-    const [ gameState, setGametState ] = useState(GameState.stopped)
+    const [ gameState, setGameState ] = useState(GameState.stopped)
     const { gameStatistics, onAskQuestion, onQuestionAnswered } = useGameStatisticsCollector(numberOfQuestions)
+    const { recordAnswer, answerHistory } = useAnswerRecorder()
     const unmountRef = useRef(false)
 
     useEffect(() => {
@@ -24,13 +26,13 @@ function GameController({ numberOfQuestions }) {
 
     const startGame = () => {
         if (componentIsMounted()) {
-            setGametState(GameState.started)
+            setGameState(GameState.started)
             resumeTimer()
         }
     }
 
     const endGame = () => {
-        setGametState(GameState.completed)
+        setGameState(GameState.completed)
     }
 
     const componentIsMounted = () => {
@@ -47,9 +49,10 @@ function GameController({ numberOfQuestions }) {
         return generateQuestion()
     }
 
-    const handleQuestionAnswered = () => {
+    const handleQuestionAnswered = (question, userAnswer, answerState) => {
         pauseTimer()
-        onQuestionAnswered()
+        recordAnswer(question, userAnswer, answerState)
+        onQuestionAnswered(answerState)
     }
 
     return (
@@ -72,7 +75,15 @@ function GameController({ numberOfQuestions }) {
                         onEndGame={endGame}
                     />
                 }
-                scoreBoard={<ScoreBoard elapsedTime={elapsedSeconds} />}
+                scoreBoard={
+                    <ScoreBoard
+                        elapsedTime={elapsedSeconds}
+                        totalNumberOfQuestions={numberOfQuestions}
+                        numberOfQuestionsAnsweredCorrectly={gameStatistics.numberOfQuestionsAnsweredCorrectly}
+                        numberOfQuestionsAnsweredIncorrectly={gameStatistics.numberOfQuestionsAnsweredIncorrectly}
+                        answerHistory={answerHistory}
+                    />
+                }
             />
         </>
     )

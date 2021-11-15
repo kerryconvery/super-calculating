@@ -7,6 +7,7 @@ import {
 import {render, screen} from "@testing-library/react";
 import GameBoard from "./GameBoard";
 import {TwoDigitQuestion} from "../../../../utils/questionUtils";
+import {AnswerState} from "./answer/Answer";
 
 const questions = [TwoDigitQuestion.set(5, 8), TwoDigitQuestion.set(12, 3)]
 
@@ -31,10 +32,16 @@ describe('Game board', () => {
                 expect(screen.getByText('The correct answer is 13')).toBeInTheDocument()
             })
 
-            it('triggers a question answered event', async () => {
+            it('triggers a question answered event when the answer is correct', async () => {
                 await answerTheQuestionWith('13')
 
-                expect(onQuestionAnswered).toHaveBeenCalled()
+                expect(onQuestionAnswered).toHaveBeenCalledWith(questions[0], '13', AnswerState.CORRECT)
+            })
+
+            it('triggers a question answered event when the answer is wrong', async () => {
+                await answerTheQuestionWith('10')
+
+                expect(onQuestionAnswered).toHaveBeenCalledWith(questions[0], '10', AnswerState.WRONG)
             })
         })
 

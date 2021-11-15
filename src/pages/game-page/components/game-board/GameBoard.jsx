@@ -14,8 +14,8 @@ function GameBoard({ hasMoreQuestions, onAskNextQuestion, onQuestionAnswered, on
         askNextQuestion()
     }
 
-    const handleQuestionAnswered = (answerState) => {
-        onQuestionAnswered()
+    const handleQuestionAnswered = (userAnswer, answerState) => {
+        onQuestionAnswered(nextQuestion, userAnswer, answerState)
         setAnswerState(answerState)
     }
 
@@ -24,7 +24,7 @@ function GameBoard({ hasMoreQuestions, onAskNextQuestion, onQuestionAnswered, on
             return (
                 <>
                     <Question question={nextQuestion} />
-                    <Answer answer={nextQuestion.answer} onUpdateAnswerState={handleQuestionAnswered}  />
+                    <Answer answer={nextQuestion.answer} onQuestionAnswered={handleQuestionAnswered}  />
                 </>
             )
         }

@@ -27,9 +27,9 @@ function Answer(props) {
         }
 
         if (props.answer == userAnswer) {
-            props.onUpdateAnswerState(AnswerState.CORRECT)
+            props.onQuestionAnswered(userAnswer, AnswerState.CORRECT)
         } else {
-            props.onUpdateAnswerState(AnswerState.WRONG)
+            props.onQuestionAnswered(userAnswer, AnswerState.WRONG)
         }
     }
 

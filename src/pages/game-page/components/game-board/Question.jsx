@@ -1,8 +1,8 @@
 import {TwoDigitQuestion} from "../../../../utils/questionUtils";
 
-function Question(props) {
+function Question({ question }) {
     return (
-        <div data-testid='question'>{`${TwoDigitQuestion.toString(props.question)} = `}</div>
+        <div data-testid='question'>{`${TwoDigitQuestion.toString(question)} = `}</div>
     )
 }
 
