@@ -1,4 +1,7 @@
 import {useEffect, useReducer, useRef} from "react";
+import Button from '@mui/material/Button'
+import {getRandomColor} from "../../../../../utils/colorUtils";
+import RandomColorH2 from "../../labels/RandomColorH2";
 
 const IntervalState = {
     stopped: 'stopped',
@@ -60,7 +63,11 @@ function IntervalButton({ text, onCountDownCompleted }) {
         clearTimeout(intervalRef.current)
     }
 
-    return <button onClick={onButtonClick}>{text[count]}</button>
+    if(IntervalState.isIncrementing(intervalState)) {
+        return <RandomColorH2>{text[count]}</RandomColorH2>
+    }
+
+    return <Button variant="outlined" color="secondary" onClick={onButtonClick}>{text[count]}</Button>
 }
 
 export default IntervalButton
