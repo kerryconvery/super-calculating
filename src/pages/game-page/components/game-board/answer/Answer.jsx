@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Button from '@mui/material/Button'
 import AnswerLayout from "./AnswerLayout";
 import ValidationError from "./ValidationError";
 
@@ -36,7 +37,7 @@ function Answer(props) {
     return (
         <AnswerLayout
             answerInput={<input type='number' placeholder='Enter your answer' onChange={answerChangeHandler} />}
-            answerButton={<button onClick={checkAnswerHandler}>Check Answer</button>}
+            answerButton={<Button variant='contained' color="success" onClick={checkAnswerHandler}>Check Answer</Button>}
             errorMessage={<ValidationError show={shouldShowValidationErrors}>Please enter an answer first</ValidationError>}
         />
     )

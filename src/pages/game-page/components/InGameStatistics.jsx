@@ -1,11 +1,20 @@
+import styled from '@mui/material/styles/styled'
 import {formatElapsedSeconds} from "../../../utils/timeUtils";
+
+const Container = styled('div')({
+    marginBottom: '4rem'
+})
+
+const Heading = styled('h2')({
+    margin: 0
+})
 
 function InGameStatistics({ elapsedSeconds, questionNumber, totalNumberOfQuestions }) {
     return (
-        <>
-            <div>{`Elapsed time: ${formatElapsedSeconds(elapsedSeconds)}`}</div>
-            <div>{`Question ${questionNumber} of ${totalNumberOfQuestions}`}</div>
-        </>
+        <Container>
+            <Heading>{`Elapsed time: ${formatElapsedSeconds(elapsedSeconds)}`}</Heading>
+            <Heading>{`Question ${questionNumber} of ${totalNumberOfQuestions}`}</Heading>
+        </Container>
     )
 }
 
