@@ -35,14 +35,12 @@ function AnswerPad({ actualAnswer, userAnswer, onEnterAnswer, onQuestionAnswered
     }
 
     return (
-        <>
         <AnswerLayout
             answerInput={<KeyPad keys={['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']} onKeyPressed={handleKeyPadKeyPress} />}
             answerButton={<Button variant='contained' color="success" onClick={checkAnswerHandler}>Check Answer</Button>}
             clearButton={<Button variant='contained' color="secondary" onClick={onClearAnswer}>Clear</Button>}
             errorMessage={<ValidationError show={shouldShowValidationErrors}>Please enter an answer first</ValidationError>}
         />
-        </>
     )
 }
 

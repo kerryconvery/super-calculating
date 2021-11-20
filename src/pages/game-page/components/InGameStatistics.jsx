@@ -6,7 +6,8 @@ const Container = styled('div')({
 })
 
 const Heading = styled('h3')({
-    margin: 0
+    margin: 0,
+    whiteSpace: 'nowrap'
 })
 
 function InGameStatistics({ elapsedSeconds, questionNumber, totalNumberOfQuestions }) {
