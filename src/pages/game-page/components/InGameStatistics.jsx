@@ -1,4 +1,4 @@
-import styled from '@mui/material/styles/styled'
+import { styled } from '@mui/material/styles'
 import {formatElapsedSeconds} from "../../../utils/timeUtils";
 
 const Container = styled('div')({

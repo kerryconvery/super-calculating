@@ -2,12 +2,13 @@ import {
     answerTheQuestionWith,
     clickTheCheckAnswerButton,
     clickTheEndGameButton,
-    clickTheNextButton
+    clickTheNextButton, enterAnswer
 } from "../../../../utils/testUtils";
-import {render, screen} from "@testing-library/react";
+import {render, screen, waitFor} from "@testing-library/react";
 import GameBoard from "./GameBoard";
 import {TwoDigitQuestion} from "../../../../utils/questionUtils";
-import {AnswerState} from "./answer/Answer";
+import {AnswerState} from "./answer/AnswerPad";
+import userEvent from "@testing-library/user-event";
 
 const questions = [TwoDigitQuestion.set(5, 8), TwoDigitQuestion.set(12, 3)]
 
@@ -78,6 +79,20 @@ describe('Game board', () => {
                 await clickTheNextButton()
 
                 expect(screen.getByText('12 + 3 =')).toBeInTheDocument()
+            })
+        })
+
+        describe('When the user presses the clear button', () => {
+            it('clears the answer', async () => {
+                const answer = '41'
+
+                enterAnswer(answer)
+
+                await waitFor(() => {
+                    userEvent.click(screen.getByText('Clear'))
+                })
+
+                expect(screen.queryByText(answer)).not.toBeInTheDocument()
             })
         })
     })

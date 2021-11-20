@@ -1,17 +1,32 @@
-import Answer, { AnswerState } from "./answer/Answer";
+import AnswerPad, { AnswerState } from "./answer/AnswerPad";
 import Question from "./Question";
 import { TwoDigitQuestion} from "../../../../utils/questionUtils";
 import {useEffect, useState} from "react";
 import NextQuestionOrEndGame from "./buttons/NextQuestionOfEndGame";
 import CorrectOrWrongAnswer from "./correct-or-wrong-answer/CorrectOrWrongAnswer";
+import AnswerBox from "./answer/AnswerBox";
 
 function GameBoard({ hasMoreQuestions, onAskNextQuestion, onQuestionAnswered, onEndGame }) {
     const { nextQuestion, askNextQuestion } = useNextQuestion(onAskNextQuestion)
+    const [ userAnswer, setUserAnswer ] = useState('')
     const [ answerState, setAnswerState ] = useState(AnswerState.NONE)
 
     const handleNextQuestion = () => {
-        setAnswerState(AnswerState.NONE)
+        clearUserAnswer()
+        resetAnswerState()
         askNextQuestion()
+    }
+
+    const handleClearAnswer = () => {
+        clearUserAnswer()
+    }
+
+    const clearUserAnswer = () => {
+        setUserAnswer('')
+    }
+
+    const resetAnswerState = () => {
+        setAnswerState(AnswerState.NONE)
     }
 
     const handleQuestionAnswered = (userAnswer, answerState) => {
@@ -19,12 +34,23 @@ function GameBoard({ hasMoreQuestions, onAskNextQuestion, onQuestionAnswered, on
         setAnswerState(answerState)
     }
 
+    const handlerEnterAnswer = (answer) => {
+        setUserAnswer(answer)
+    }
+
     switch (answerState) {
         case AnswerState.NONE: {
             return (
                 <>
                     <Question question={nextQuestion} />
-                    <Answer answer={nextQuestion.answer} onQuestionAnswered={handleQuestionAnswered}  />
+                    <AnswerBox answer={userAnswer} />
+                    <AnswerPad
+                        actualAnswer={nextQuestion.answer}
+                        userAnswer={userAnswer}
+                        onEnterAnswer={handlerEnterAnswer}
+                        onQuestionAnswered={handleQuestionAnswered}
+                        onClearAnswer={handleClearAnswer}
+                    />
                 </>
             )
         }

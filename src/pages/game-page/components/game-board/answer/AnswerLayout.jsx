@@ -1,4 +1,4 @@
-import styled from '@mui/material/styles/styled'
+import { styled } from '@mui/material/styles'
 
 const Form = styled('div')({
     'div': {
@@ -6,15 +6,29 @@ const Form = styled('div')({
     }
 })
 
-function AnswerLayout(props) {
+const ButtonGroup = styled('div')({
+    display: 'inline',
+    'button:first-of-type': {
+        marginRight: '1rem'
+    }
+})
+
+const AnswerInput = styled('div')({
+    marginBottom: '2rem'
+})
+
+function AnswerLayout({ answerInput, answerButton, clearButton, errorMessage }) {
     return (
         <Form>
-            {props.answerInput}
+            <AnswerInput>
+                {answerInput}
+            </AnswerInput>
+            <ButtonGroup>
+                {answerButton}
+                {clearButton}
+            </ButtonGroup>
             <div>
-                {props.answerButton}
-            </div>
-            <div>
-                {props.errorMessage}
+                {errorMessage}
             </div>
         </Form>
     )

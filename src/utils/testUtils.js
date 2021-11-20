@@ -1,14 +1,19 @@
 import {fireEvent, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-export async function answerTheQuestionWith(answerValue) {
-    const answerInputField = screen.getByPlaceholderText('Enter your answer')
-
-    await waitFor(() => {
-        fireEvent.change(answerInputField, {target: {value: answerValue}})
-    })
+export function answerTheQuestionWith(answerValue) {
+    enterAnswer(answerValue)
 
     return clickTheCheckAnswerButton()
+}
+
+export function enterAnswer(answerValue) {
+    for (let charIndex = 0; charIndex < answerValue.length; charIndex++) {
+        const char = answerValue.charAt(charIndex)
+        const button = screen.getByText(char)
+
+        userEvent.click(button)
+    }
 }
 
 export function clickTheCheckAnswerButton() {

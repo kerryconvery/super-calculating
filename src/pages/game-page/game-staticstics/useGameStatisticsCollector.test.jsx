@@ -1,7 +1,7 @@
 import {act, renderHook} from "@testing-library/react-hooks";
 import { waitFor } from "@testing-library/react";
 import useGameStatisticsCollector from "./useGameStatisticsCollector";
-import {AnswerState} from "../components/game-board/answer/Answer";
+import {AnswerState} from "../components/game-board/answer/AnswerPad";
 
 describe('useGameStatisticsCollector', () => {
     const totalNumberOfQuestions = 3

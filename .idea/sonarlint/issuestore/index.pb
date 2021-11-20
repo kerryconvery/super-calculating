@@ -19,8 +19,6 @@ A
 docs/index.html,8/c/8c0d6b0dca5817118d2f528acb81b643d000c69a
 J
 src/utils/questionUtils.js,3/8/38e4f83565a284bf72730ff1ba937382321c6c0e
-F
-src/utils/testUtils.js,d/3/d3ba97c6671d07ffdd63dbff746f9e8e231157e2
 b
 2src/pages/game-page/components/game-board/types.js,6/e/6e92d9d4f538b2e1266e98f0d52a06110f16fd86
 ƒ
@@ -47,3 +45,14 @@ v
 Fsrc/pages/game-page/components/game-board/timers/useStopWatchTimer.jsx,9/f/9fb8ecfc71928b165c95b1ad5455b6a30636b3e8
 s
 Csrc/pages/game-page/game-staticstics/useGameStatisticsCollector.jsx,9/f/9f29b6384a343550ed34cb93bb615ac3a040b4c9
+f
+6src/pages/game-page/components/labels/RandomColorH2.js,e/c/ec8230b6ec9adab4c931f34b75a71490632c686a
+h
+8src/pages/game-page/components/game-board/PageCenter.jsx,c/0/c049780b55e6007cb0dc6d994819b9cd707a5a93
+[
++src/pages/game-page/GameController.test.jsx,3/4/349be15a40fc6ea717ba35ea2cc16a2dfd3cd8d2
+t
+Dsrc/pages/game-page/components/game-board/buttons/IntervalButton.jsx,a/4/a4aa4f0e5450d4c04087009d1910a9384201fed7
+:
+
+index.html,f/6/f6013a00b362253c64368d6eebc50ea2131754e2
