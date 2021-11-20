@@ -13,7 +13,7 @@ const Title = styled('h1')({
 const App = () => (
     <HorizontalCenter>
         <Title>Super Calculating</Title>
-        <GameController numberOfQuestions={2} />
+        <GameController numberOfQuestions={30} />
     </HorizontalCenter>
 )
 
