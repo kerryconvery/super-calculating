@@ -23,8 +23,6 @@ b
 2src/pages/game-page/components/game-board/types.js,6/e/6e92d9d4f538b2e1266e98f0d52a06110f16fd86
 É
 Ssrc/pages/game-page/components/game-board/correct-or-wrong-answer/CorrectAnswer.jsx,0/6/06fbbaa73543c039737832bf85d607209f2b11d5
-ä
-Zsrc/pages/game-page/components/game-board/correct-or-wrong-answer/CorrectOrWrongAnswer.jsx,5/f/5fe2518b85fa99f06415f01b851f6f29420c7eb6
 Å
 Qsrc/pages/game-page/components/game-board/correct-or-wrong-answer/WrongAnswer.jsx,1/1/114517a12ad9d6a2df60ef36520eb8f6f54f91e6
 {

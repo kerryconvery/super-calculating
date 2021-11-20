@@ -14,7 +14,7 @@ const ButtonGroup = styled('div')({
 })
 
 const AnswerInput = styled('div')({
-    marginBottom: '2rem'
+    marginBottom: '1rem'
 })
 
 function AnswerLayout({ answerInput, answerButton, clearButton, errorMessage }) {

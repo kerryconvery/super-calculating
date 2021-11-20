@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles'
 import {formatElapsedSeconds} from "../../../utils/timeUtils";
 
 const Container = styled('div')({
-    marginBottom: '4rem'
+    paddingBottom: '1rem'
 })
 
 const Heading = styled('h3')({
