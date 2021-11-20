@@ -5,7 +5,7 @@ const Container = styled('div')({
     marginBottom: '4rem'
 })
 
-const Heading = styled('h2')({
+const Heading = styled('h3')({
     margin: 0
 })
 

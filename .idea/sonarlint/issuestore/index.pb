@@ -43,8 +43,6 @@ j
 :src/pages/game-page/game-staticstics/useAnswerRecorder.jsx,0/3/03b8870e004335b49c76a22e577546270d0c83db
 v
 Fsrc/pages/game-page/components/game-board/timers/useStopWatchTimer.jsx,9/f/9fb8ecfc71928b165c95b1ad5455b6a30636b3e8
-s
-Csrc/pages/game-page/game-staticstics/useGameStatisticsCollector.jsx,9/f/9f29b6384a343550ed34cb93bb615ac3a040b4c9
 f
 6src/pages/game-page/components/labels/RandomColorH2.js,e/c/ec8230b6ec9adab4c931f34b75a71490632c686a
 h
