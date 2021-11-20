@@ -10,6 +10,11 @@ const ButtonGroup = styled('div')({
     display: 'inline',
     'button:first-of-type': {
         marginRight: '1rem'
+    },
+    '@media (max-width:480px)': {
+        'button:first-of-type': {
+            marginBottom: '1rem'
+        }
     }
 })
 
