@@ -41,14 +41,10 @@ j
 :src/pages/game-page/game-staticstics/useAnswerRecorder.jsx,0/3/03b8870e004335b49c76a22e577546270d0c83db
 v
 Fsrc/pages/game-page/components/game-board/timers/useStopWatchTimer.jsx,9/f/9fb8ecfc71928b165c95b1ad5455b6a30636b3e8
-f
-6src/pages/game-page/components/labels/RandomColorH2.js,e/c/ec8230b6ec9adab4c931f34b75a71490632c686a
 h
 8src/pages/game-page/components/game-board/PageCenter.jsx,c/0/c049780b55e6007cb0dc6d994819b9cd707a5a93
 [
 +src/pages/game-page/GameController.test.jsx,3/4/349be15a40fc6ea717ba35ea2cc16a2dfd3cd8d2
-t
-Dsrc/pages/game-page/components/game-board/buttons/IntervalButton.jsx,a/4/a4aa4f0e5450d4c04087009d1910a9384201fed7
 :
 
 index.html,f/6/f6013a00b362253c64368d6eebc50ea2131754e2

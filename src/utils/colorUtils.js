@@ -1,1 +1,7 @@
-export const getRandomColor = () => Math.floor(Math.random()*16777215).toString(16);
+function random(number){
+    return Math.floor(Math.random()*number);;
+}
+
+export function getRandomColor(){
+    return 'rgb('+random(255)+','+random(255)+','+random(255)+')';
+}
