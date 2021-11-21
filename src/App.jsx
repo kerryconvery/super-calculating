@@ -13,9 +13,11 @@ const Title = styled('h1')({
 
 const App = () => (
     <HorizontalCenter>
-        <RandomBodyBackground />
         <Title>Super Calculating</Title>
-        <GameController numberOfQuestions={30} />
+        <GameController
+            numberOfQuestions={30}
+            startupCountDown={['Start', '5', '4', '3', '2', '1', 'GO!']}
+        />
     </HorizontalCenter>
 )
 

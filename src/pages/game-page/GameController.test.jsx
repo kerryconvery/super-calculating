@@ -11,23 +11,11 @@ describe('When playing the game', () => {
     beforeEach(startTheGame)
 
     describe('when the start button is pressed', () => {
-        it('Counts down from 3', () => {
-            expect(screen.getByText('3')).toBeInTheDocument()
-        })
-
-        it('Counts down from 3 to 2', async () => {
-            await waitForTwo()
-
-            expect(screen.getByText('2')).toBeInTheDocument()
-        })
-
-        it('Counts down from 2 to 1', async () => {
-            await waitForOne()
-
+        it('Counts down from Start to 1', () => {
             expect(screen.getByText('1')).toBeInTheDocument()
         })
 
-        it('Counts down from 1 to START', async () => {
+        it('Counts down from 1 to GO!', async () => {
             await waitForGo()
 
             expect(screen.getByText('GO!')).toBeInTheDocument()
@@ -131,17 +119,15 @@ function renderGamePage() {
     jest.spyOn(questionUtils, 'generateQuestion')
         .mockReturnValue(TwoDigitQuestion.set(5, 8))
 
-    return render(<GameController numberOfQuestions={3} />)
+    return render(<GameController numberOfQuestions={3} startupCountDown={['Start', '1', 'GO!']} />)
 }
 
 function pressTheStartButton() {
     userEvent.click(screen.getByText('Start'))
 }
 
-const waitForTwo = waitForCountdown(1000)
-const waitForOne = waitForCountdown(2000)
-const waitForGo = waitForCountdown(3000)
-const waitForQuestion = waitForCountdown(4000)
+const waitForGo = waitForCountdown(1000)
+const waitForQuestion = waitForCountdown(2000)
 
 function waitForCountdown(period) {
     return async function() {

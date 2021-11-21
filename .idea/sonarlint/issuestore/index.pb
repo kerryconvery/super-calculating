@@ -37,8 +37,6 @@ v
 Fsrc/pages/game-page/components/game-board/timers/useStopWatchTimer.jsx,9/f/9fb8ecfc71928b165c95b1ad5455b6a30636b3e8
 h
 8src/pages/game-page/components/game-board/PageCenter.jsx,c/0/c049780b55e6007cb0dc6d994819b9cd707a5a93
-[
-+src/pages/game-page/GameController.test.jsx,3/4/349be15a40fc6ea717ba35ea2cc16a2dfd3cd8d2
 :
 
 index.html,f/6/f6013a00b362253c64368d6eebc50ea2131754e2

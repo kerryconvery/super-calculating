@@ -9,9 +9,7 @@ import useGameStatisticsCollector from "./game-staticstics/useGameStatisticsColl
 import useStopWatchTimer from "./components/timers/useStopWatchTimer";
 import useAnswerRecorder from "./game-staticstics/useAnswerRecorder";
 
-const startupSteps = ['Start', '3', '2', '1', 'GO!']
-
-function GameController({ numberOfQuestions }) {
+function GameController({ numberOfQuestions, startupCountDown }) {
     const { elapsedSeconds, resumeTimer, pauseTimer } = useStopWatchTimer()
     const [ gameState, setGameState ] = useState(GameState.stopped)
     const { gameStatistics, onAskQuestion, onQuestionAnswered } = useGameStatisticsCollector(numberOfQuestions)
@@ -66,7 +64,7 @@ function GameController({ numberOfQuestions }) {
                         totalNumberOfQuestions={numberOfQuestions}
                     />
                 }
-                startButton={<IntervalButton text={startupSteps} onCountDownCompleted={startGame} />}
+                startButton={<IntervalButton text={startupCountDown} onCountDownCompleted={startGame} />}
                 gameBoard={
                     <GameBoard
                         hasMoreQuestions={gameStatistics.numberOfQuestionsRemaining > 0}
