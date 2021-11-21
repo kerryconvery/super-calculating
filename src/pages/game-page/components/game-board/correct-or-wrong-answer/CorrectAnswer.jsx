@@ -1,7 +1,9 @@
+import Image from "./Image";
+
 function CorrectAnswer() {
     return (
         <>
-            <img src='assets/correct.png'></img>
+            <Image src='assets/correct.png' />
             <div>Correct!!</div>
         </>
     )

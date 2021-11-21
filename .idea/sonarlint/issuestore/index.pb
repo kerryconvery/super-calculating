@@ -19,14 +19,10 @@ A
 docs/index.html,8/c/8c0d6b0dca5817118d2f528acb81b643d000c69a
 J
 src/utils/questionUtils.js,3/8/38e4f83565a284bf72730ff1ba937382321c6c0e
-Å
-Qsrc/pages/game-page/components/game-board/correct-or-wrong-answer/WrongAnswer.jsx,1/1/114517a12ad9d6a2df60ef36520eb8f6f54f91e6
 {
 Ksrc/pages/game-page/components/game-board/timers/useStopWatchTimer.test.jsx,e/f/ef2c344e134802fe454355baa8e37abdf50c0c13
 s
 Csrc/pages/game-page/components/game-board/buttons/EndGameButton.jsx,a/1/a15e4cf067e0858b62ce6e085b6ebc391ce66b43
-{
-Ksrc/pages/game-page/components/game-board/buttons/NextQuestionOfEndGame.jsx,8/f/8f36230d2e1693c90fa2f2cee97bdf25c6c17c6d
 F
 src/utils/timeUtils.js,7/d/7d2df45501d646b7c2d6790bcd264badf2a35192
 x

@@ -1,7 +1,9 @@
+import Image from "./Image";
+
 function WrongAnswer({ correctAnswer }) {
     return (
         <>
-            <img src='assets/oh-no.png'></img>
+            <Image src='assets/oh-no.png' />
             <div>Oh No!!</div>
             <div>{`The correct answer is ${correctAnswer}`}</div>
         </>

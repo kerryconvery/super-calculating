@@ -13,6 +13,7 @@ const Title = styled('h1')({
 
 const App = () => (
     <HorizontalCenter>
+        <RandomBodyBackground />
         <Title>Super Calculating</Title>
         <GameController
             numberOfQuestions={30}
