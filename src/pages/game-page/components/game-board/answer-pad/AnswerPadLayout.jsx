@@ -22,7 +22,7 @@ const AnswerInput = styled('div')({
     marginBottom: '1rem'
 })
 
-function AnswerLayout({ answerInput, answerButton, clearButton, errorMessage }) {
+function AnswerPadLayout({ answerInput, answerButton, clearButton, errorMessage }) {
     return (
         <Form>
             <AnswerInput>
@@ -39,4 +39,4 @@ function AnswerLayout({ answerInput, answerButton, clearButton, errorMessage }) 
     )
 }
 
-export default AnswerLayout
+export default AnswerPadLayout

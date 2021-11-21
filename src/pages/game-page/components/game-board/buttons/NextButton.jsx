@@ -1,5 +1,7 @@
+import Button from "@mui/material/Button";
+
 function NextButton({ onNext }){
-    return <button onClick={onNext}>Next question</button>
+    return <Button variant='contained' color='success' onClick={onNext}>Next question</Button>
 }
 
 export default NextButton

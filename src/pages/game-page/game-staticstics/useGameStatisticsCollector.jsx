@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import {AnswerState} from "../components/game-board/answer/AnswerPad";
+import {AnswerState} from "../components/game-board/answer-pad/AnswerPad";
 
 function useGameStatisticsCollector(numberOfQuestions) {
     const [ gameStatistics, setGameStatistics ] = useState({

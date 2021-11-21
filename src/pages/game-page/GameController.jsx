@@ -1,12 +1,12 @@
 import {useEffect, useRef, useState} from 'react'
-import IntervalButton from './components/game-board/buttons/IntervalButton'
+import IntervalButton from './components/IntervalButton'
 import { generateQuestion } from '../../utils/questionUtils'
 import GameBoard from "./components/game-board/GameBoard";
 import GamePresenter, {GameState} from "./GamePresenter";
 import ScoreBoard from "./components/ScoreBoard";
 import InGameStatistics from "./components/InGameStatistics";
 import useGameStatisticsCollector from "./game-staticstics/useGameStatisticsCollector";
-import useStopWatchTimer from "./components/game-board/timers/useStopWatchTimer";
+import useStopWatchTimer from "./components/timers/useStopWatchTimer";
 import useAnswerRecorder from "./game-staticstics/useAnswerRecorder";
 
 const startupSteps = ['Start', '3', '2', '1', 'GO!']

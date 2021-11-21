@@ -1,4 +1,4 @@
-import {AnswerState} from "../answer/AnswerPad";
+import {AnswerState} from "../answer-pad/AnswerPad";
 import CorrectAnswer from "./CorrectAnswer";
 import WrongAnswer from "./WrongAnswer";
 

@@ -5,10 +5,10 @@ const InlineContainer = styled('h3')({
     display: 'inline'
 })
 
-function Question({ question }) {
+function QuestionPresenter({ question }) {
     return (
-        <InlineContainer data-testid='question'>{`${TwoDigitQuestion.toString(question)} = `}</InlineContainer>
+        <InlineContainer>{`${TwoDigitQuestion.toString(question)} = `}</InlineContainer>
     )
 }
 
-export default Question
+export default QuestionPresenter

@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import Button from '@mui/material/Button'
-import AnswerLayout from "./AnswerLayout";
-import ValidationError from "./ValidationError";
-import KeyPad from "../../key-pad/KeyPad";
+import AnswerPadLayout from "./AnswerPadLayout";
+import CheckAnswerButton from "../buttons/CheckAnswerButton";
+import ClearButton from "../buttons/ClearButton";
+import NumberKeyPad from "../key-pad/NumberKeyPad";
+import MissingAnswerError from "../validation-errrors/MissingAnswerError";
 
 export const AnswerState = {
     NONE: 'none',
@@ -19,7 +20,7 @@ function AnswerPad({ actualAnswer, userAnswer, onEnterAnswer, onQuestionAnswered
             return
         }
 
-        if (actualAnswer == userAnswer) {
+        if (actualAnswer === parseInt(userAnswer)) {
             onQuestionAnswered(userAnswer, AnswerState.CORRECT)
         } else {
             onQuestionAnswered(userAnswer, AnswerState.WRONG)
@@ -35,11 +36,11 @@ function AnswerPad({ actualAnswer, userAnswer, onEnterAnswer, onQuestionAnswered
     }
 
     return (
-        <AnswerLayout
-            answerInput={<KeyPad keys={['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']} onKeyPressed={handleKeyPadKeyPress} />}
-            answerButton={<Button variant='contained' color="success" onClick={checkAnswerHandler}>Check Answer</Button>}
-            clearButton={<Button variant='contained' color="secondary" onClick={onClearAnswer}>Clear</Button>}
-            errorMessage={<ValidationError show={shouldShowValidationErrors}>Please enter an answer first</ValidationError>}
+        <AnswerPadLayout
+            answerInput={<NumberKeyPad onKeyPressed={handleKeyPadKeyPress} />}
+            answerButton={<CheckAnswerButton onClick={checkAnswerHandler} />}
+            clearButton={<ClearButton onClick={onClearAnswer} />}
+            errorMessage={<MissingAnswerError show={shouldShowValidationErrors} />}
         />
     )
 }

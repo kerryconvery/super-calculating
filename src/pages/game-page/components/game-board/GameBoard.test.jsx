@@ -7,7 +7,7 @@ import {
 import {render, screen, waitFor} from "@testing-library/react";
 import GameBoard from "./GameBoard";
 import {TwoDigitQuestion} from "../../../../utils/questionUtils";
-import {AnswerState} from "./answer/AnswerPad";
+import {AnswerState} from "./answer-pad/AnswerPad";
 import userEvent from "@testing-library/user-event";
 
 const questions = [TwoDigitQuestion.set(5, 8), TwoDigitQuestion.set(12, 3)]
