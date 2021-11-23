@@ -3,7 +3,7 @@ import IntervalButton from '../IntervalButton'
 import { generateQuestion } from '../../../utils/questionUtils'
 import GameBoard from "../game-board/GameBoard";
 import GamePresenter, {GameState} from "../GamePresenter";
-import ScoreBoard from "../ScoreBoard";
+import ResultsBoard from "../ResultsBoard";
 import InGameStatistics from "../game-staticstics/InGameStatistics";
 import useGameStatisticsCollector from "../game-staticstics/useGameStatisticsCollector";
 import useStopWatchTimer from "../timers/useStopWatchTimer";
@@ -74,7 +74,7 @@ function GameController({ numberOfQuestions, startupCountDown }) {
                     />
                 }
                 scoreBoard={
-                    <ScoreBoard
+                    <ResultsBoard
                         elapsedTime={elapsedSeconds}
                         totalNumberOfQuestions={numberOfQuestions}
                         numberOfQuestionsAnsweredCorrectly={gameStatistics.numberOfQuestionsAnsweredCorrectly}

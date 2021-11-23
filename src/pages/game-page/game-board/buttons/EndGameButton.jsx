@@ -1,5 +1,7 @@
+import Button from '@mui/material/Button'
+
 function EndGameButton({ onEndGame }){
-    return <button onClick={onEndGame}>End game</button>
+    return <Button variant='contained' color='success' onClick={onEndGame}>End game</Button>
 }
 
 export default EndGameButton

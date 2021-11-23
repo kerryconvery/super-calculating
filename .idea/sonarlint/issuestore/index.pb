@@ -15,16 +15,12 @@ A
 webpack.common.js,d/0/d06806c1cc82bd1781be984b85882961da77e838
 ?
 docs/index.html,8/c/8c0d6b0dca5817118d2f528acb81b643d000c69a
-J
-src/utils/questionUtils.js,3/8/38e4f83565a284bf72730ff1ba937382321c6c0e
 s
 Csrc/pages/game-page/components/game-board/buttons/EndGameButton.jsx,a/1/a15e4cf067e0858b62ce6e085b6ebc391ce66b43
 F
 src/utils/timeUtils.js,7/d/7d2df45501d646b7c2d6790bcd264badf2a35192
 x
 Hsrc/pages/game-page/game-staticstics/useGameStatisticsCollector.test.jsx,6/9/6960b386a9c1d2e44dcde44d99e206b0bc452080
-j
-:src/pages/game-page/game-staticstics/useAnswerRecorder.jsx,0/3/03b8870e004335b49c76a22e577546270d0c83db
 h
 8src/pages/game-page/components/game-board/PageCenter.jsx,c/0/c049780b55e6007cb0dc6d994819b9cd707a5a93
 :

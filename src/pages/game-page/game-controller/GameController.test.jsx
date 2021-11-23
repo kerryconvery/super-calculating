@@ -7,82 +7,88 @@ import {answerTheQuestionWith, clickTheEndGameButton, clickTheNextButton} from "
 
 jest.useFakeTimers()
 
-describe('When playing the game', () => {
-    beforeEach(startTheGame)
+describe('Game controller', () => {
+    describe('When playing the game', () => {
+        beforeEach(startTheGame)
 
-    describe('when the start button is pressed', () => {
-        it('Counts down from Start to 1', () => {
-            expect(screen.getByText('1')).toBeInTheDocument()
+        describe('when the start button is pressed', () => {
+            it('Counts down from Start to 1', () => {
+                expect(screen.getByText('1')).toBeInTheDocument()
+            })
+
+            it('Counts down from 1 to GO!', async () => {
+                await waitForGo()
+
+                expect(screen.getByText('GO!')).toBeInTheDocument()
+            })
+
+            it('displays a mathematics question when the count down reaches zero', async () => {
+                await waitForQuestion()
+
+                expect(screen.getByText('5 + 8 =')).toBeInTheDocument()
+            })
         })
 
-        it('Counts down from 1 to GO!', async () => {
-            await waitForGo()
+        describe('when playing the game', () => {
+            it('displays the initial question number out of the total number of questions', async () => {
+                await waitForQuestion()
 
-            expect(screen.getByText('GO!')).toBeInTheDocument()
-        })
+                expect(screen.getByText('Question 1 of 3')).toBeInTheDocument()
+            })
 
-        it('displays a mathematics question when the count down reaches zero', async () => {
-            await waitForQuestion()
+            it('displays the initial elapsed time as zero', async () => {
+                await waitForQuestion()
 
-            expect(screen.getByText('5 + 8 =')).toBeInTheDocument()
+                expect(screen.getByText('Elapsed time: 00:00')).toBeInTheDocument()
+            })
+
+            it('displays the elapsed number of seconds since the game started', async () => {
+                await waitForQuestion()
+
+                act(() => {
+                    jest.advanceTimersByTime(2000)
+                })
+
+                expect(screen.getByText('Elapsed time: 00:02')).toBeInTheDocument()
+            })
+
+            it('pauses the timer while displaying the result of the answer', async () => {
+                await waitForQuestion()
+
+                act(() => {
+                    jest.advanceTimersByTime(2000)
+                })
+
+                await answerTheQuestionWith('10')
+
+                act(() => {
+                    jest.advanceTimersByTime(3000)
+                })
+
+                await clickTheNextButton()
+
+                act(() => {
+                    jest.advanceTimersByTime(1000)
+                })
+
+                expect(screen.getByText('Elapsed time: 00:03')).toBeInTheDocument()
+            })
+
+            it('displays the updated question number out of the total number of questions', async () => {
+                await waitForQuestion()
+
+                await answerTheQuestionWith('10')
+                await clickTheNextButton()
+
+                expect(screen.getByText('Question 2 of 3')).toBeInTheDocument()
+            })
         })
     })
 
-    describe('when playing the game', () => {
-        it('displays the initial question number out of the total number of questions', async () => {
-            await waitForQuestion()
-
-            expect(screen.getByText('Question 1 of 3')).toBeInTheDocument()
-        })
-
-        it('displays the initial elapsed time as zero', async () => {
-            await waitForQuestion()
-
-            expect(screen.getByText('Elapsed time: 00:00')).toBeInTheDocument()
-        })
-
-        it('displays the elapsed number of seconds since the game started', async () => {
-            await waitForQuestion()
-
-            act(() => {
-                jest.advanceTimersByTime(2000)
-            })
-
-            expect(screen.getByText('Elapsed time: 00:02')).toBeInTheDocument()
-        })
-
-        it('pauses the timer while displaying the result of the answer', async () => {
-            await waitForQuestion()
-
-            act(() => {
-                jest.advanceTimersByTime(2000)
-            })
-
-            await answerTheQuestionWith('10')
-
-            act(() => {
-                jest.advanceTimersByTime(3000)
-            })
-
-            await clickTheNextButton()
-
-            act(() => {
-                jest.advanceTimersByTime(1000)
-            })
-
-            expect(screen.getByText('Elapsed time: 00:03')).toBeInTheDocument()
-        })
-
-        it('displays the updated question number out of the total number of questions', async () => {
-            await waitForQuestion()
-
-            await answerTheQuestionWith('10')
-            await clickTheNextButton()
-
-            expect(screen.getByText('Question 2 of 3')).toBeInTheDocument()
-        })
-
+    describe('When the game has ended', () => {
         it('displays the score board when all the questions have been answered', async () => {
+            const { container } = await startTheGame()
+
             await waitForQuestion()
 
             act(() => {
@@ -98,21 +104,17 @@ describe('When playing the game', () => {
             await answerTheQuestionWith('10')
             await clickTheEndGameButton()
 
-            expect(screen.getByText('The end')).toBeInTheDocument()
-            expect(screen.getByText('Time taken: 00:10')).toBeInTheDocument()
-            expect(screen.getByText('Total number of questions: 3')).toBeInTheDocument()
-            expect(screen.getByText('Number of questions answered correctly: 1')).toBeInTheDocument()
-            expect(screen.getByText('Number of questions answered incorrectly: 2')).toBeInTheDocument()
-            expect(screen.getByText('5 + 8 = 13 - Correct'))
-            expect(screen.getByText('5 + 8 = 10 - Wrong'))
+            expect(container.firstChild).toMatchSnapshot()
         })
     })
 })
 
 async function startTheGame() {
-    await renderGamePage()
+    const renderResult = await renderGamePage()
 
-    return pressTheStartButton()
+    pressTheStartButton()
+
+    return renderResult
 }
 
 function renderGamePage() {
