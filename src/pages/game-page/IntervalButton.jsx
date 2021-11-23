@@ -1,7 +1,7 @@
 import {useEffect, useReducer, useRef} from "react";
 import Button from '@mui/material/Button'
-import {getRandomColor} from "../../../utils/colorUtils";
-import RandomColorH2 from "./labels/RandomColorH2";
+import {getRandomColor} from "../../utils/colorUtils";
+import RandomColorH2 from "./RandomColorH2";
 
 const IntervalState = {
     stopped: 'stopped',

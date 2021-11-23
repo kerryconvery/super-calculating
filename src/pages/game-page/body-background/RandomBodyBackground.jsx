@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import { getRandomColor } from "../../../../utils/colorUtils";
+import { getRandomColor } from "../../../utils/colorUtils";
 
 function RandomBodyBackground() {
     useEffect(() => {

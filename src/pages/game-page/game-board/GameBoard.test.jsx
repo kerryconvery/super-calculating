@@ -3,10 +3,10 @@ import {
     clickTheCheckAnswerButton,
     clickTheEndGameButton,
     clickTheNextButton, enterAnswer
-} from "../../../../utils/testUtils";
+} from "../../../utils/testUtils";
 import {render, screen, waitFor} from "@testing-library/react";
 import GameBoard from "./GameBoard";
-import {TwoDigitQuestion} from "../../../../utils/questionUtils";
+import {TwoDigitQuestion} from "../../../utils/questionUtils";
 import {AnswerState} from "./answer-pad/AnswerPad";
 import userEvent from "@testing-library/user-event";
 

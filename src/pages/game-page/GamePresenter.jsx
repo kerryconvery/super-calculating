@@ -1,4 +1,4 @@
-import PageCenter from "./components/game-board/PageCenter";
+import PageCenter from "./game-board/PageCenter";
 
 export const GameState = {
     stopped: 'stopped',

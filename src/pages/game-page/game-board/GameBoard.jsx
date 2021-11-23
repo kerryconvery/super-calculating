@@ -1,6 +1,6 @@
 import AnswerPad, { AnswerState } from "./answer-pad/AnswerPad";
 import QuestionPresenter from "./QuestionPresenter";
-import { TwoDigitQuestion} from "../../../../utils/questionUtils";
+import { TwoDigitQuestion} from "../../../utils/questionUtils";
 import {useEffect, useState} from "react";
 import NextQuestionOrEndGame from "./buttons/NextQuestionOfEndGame";
 import CorrectOrWrongAnswer from "./correct-or-wrong-answer/CorrectOrWrongAnswer";

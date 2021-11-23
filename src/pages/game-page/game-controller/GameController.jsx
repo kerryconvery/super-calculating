@@ -1,13 +1,13 @@
 import {useEffect, useRef, useState} from 'react'
-import IntervalButton from './components/IntervalButton'
-import { generateQuestion } from '../../utils/questionUtils'
-import GameBoard from "./components/game-board/GameBoard";
-import GamePresenter, {GameState} from "./GamePresenter";
-import ScoreBoard from "./components/ScoreBoard";
-import InGameStatistics from "./components/InGameStatistics";
-import useGameStatisticsCollector from "./game-staticstics/useGameStatisticsCollector";
-import useStopWatchTimer from "./components/timers/useStopWatchTimer";
-import useAnswerRecorder from "./game-staticstics/useAnswerRecorder";
+import IntervalButton from '../IntervalButton'
+import { generateQuestion } from '../../../utils/questionUtils'
+import GameBoard from "../game-board/GameBoard";
+import GamePresenter, {GameState} from "../GamePresenter";
+import ScoreBoard from "../ScoreBoard";
+import InGameStatistics from "../game-staticstics/InGameStatistics";
+import useGameStatisticsCollector from "../game-staticstics/useGameStatisticsCollector";
+import useStopWatchTimer from "../timers/useStopWatchTimer";
+import useAnswerRecorder from "../game-staticstics/useAnswerRecorder";
 
 function GameController({ numberOfQuestions, startupCountDown }) {
     const { elapsedSeconds, resumeTimer, pauseTimer } = useStopWatchTimer()

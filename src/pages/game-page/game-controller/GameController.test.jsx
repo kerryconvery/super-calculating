@@ -1,9 +1,9 @@
 import {render, screen, act, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import GameController from './GameController'
-import * as questionUtils from '../../utils/questionUtils'
-import {TwoDigitQuestion} from "../../utils/questionUtils";
-import {answerTheQuestionWith, clickTheEndGameButton, clickTheNextButton} from "../../utils/testUtils";
+import * as questionUtils from '../../../utils/questionUtils'
+import {TwoDigitQuestion} from "../../../utils/questionUtils";
+import {answerTheQuestionWith, clickTheEndGameButton, clickTheNextButton} from "../../../utils/testUtils";
 
 jest.useFakeTimers()
 

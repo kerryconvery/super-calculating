@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react"
 import RandomBodyBackground from "./RandomBodyBackground";
 
-jest.mock("../../../../utils/colorUtils", () => ({
+jest.mock("../../../utils/colorUtils", () => ({
     getRandomColor: () => 'red'
 }))
 

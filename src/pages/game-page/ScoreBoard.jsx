@@ -1,6 +1,6 @@
-import {formatElapsedSeconds} from "../../../utils/timeUtils";
+import {formatElapsedSeconds} from "../../utils/timeUtils";
 import {AnswerState} from "./game-board/answer-pad/AnswerPad";
-import {TwoDigitQuestion} from "../../../utils/questionUtils";
+import {TwoDigitQuestion} from "../../utils/questionUtils";
 
 function ScoreBoard(props) {
     const {
