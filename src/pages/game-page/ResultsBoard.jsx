@@ -7,6 +7,7 @@ import TableBody from "@mui/material/TableBody"
 import TableRow from "@mui/material/TableRow"
 import TableCell from "@mui/material/TableCell"
 import TableHead from '@mui/material/TableHead'
+import TableContainer from '@mui/material/TableContainer'
 
 function ResultsBoard(props) {
     const {
@@ -65,29 +66,31 @@ function ResultItem({ name, value }) {
 
 function AnswerHistory({ answerHistory }) {
     return (
-        <Table size='small'>
-            <TableHead>
-                <TableRow>
-                    <TableCell>Question</TableCell>
-                    <TableCell>You answered</TableCell>
-                    <TableCell>Correct answer</TableCell>
-                    <TableCell></TableCell>
-                </TableRow>
-            </TableHead>
-            <TableBody>
-                {
-                    answerHistory.map((answeredQuestion, index) => (
-                            <Answer
-                                key={index}
-                                question={answeredQuestion.question}
-                                userAnswer={answeredQuestion.userAnswer}
-                                answerState={answeredQuestion.answerState}
-                            />
+        <TableContainer>
+            <Table size='small'>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Question</TableCell>
+                        <TableCell>You answered</TableCell>
+                        <TableCell>Correct answer</TableCell>
+                        <TableCell></TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {
+                        answerHistory.map((answeredQuestion, index) => (
+                                <Answer
+                                    key={index}
+                                    question={answeredQuestion.question}
+                                    userAnswer={answeredQuestion.userAnswer}
+                                    answerState={answeredQuestion.answerState}
+                                />
+                            )
                         )
-                    )
-                }
-            </TableBody>
-        </Table>
+                    }
+                </TableBody>
+            </Table>
+        </TableContainer>
     )
 }
 
