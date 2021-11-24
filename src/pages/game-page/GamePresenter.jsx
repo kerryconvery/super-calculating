@@ -1,10 +1,5 @@
 import PageCenter from "./game-board/PageCenter";
-
-export const GameState = {
-    stopped: 'stopped',
-    started: 'started',
-    completed: 'completed'
-}
+import { GameState } from "./game-controller/types";
 
 function GamePresenter({ gameState, inGameStats, gameBoard, startButton, scoreBoard }) {
     const gameStateToView = () => {

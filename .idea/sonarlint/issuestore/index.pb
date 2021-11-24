@@ -5,14 +5,10 @@
 .babelrc,b/c/bcac7464521b8c19a2372c739f6dc9e9ab7dfc80
 ?
 webpack.prod.js,4/5/45319b6b618b97652fd7d0a35472950ff553e365
-<
-package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
 >
 webpack.dev.js,8/8/88370f22b4cd5b65c6abcf2a1fef5886355982b9
 H
 webpack.common.simple.js,0/9/091bc8b87da0cfb92d8a4f1fe4cab512ff9aceed
-A
-webpack.common.js,d/0/d06806c1cc82bd1781be984b85882961da77e838
 ?
 docs/index.html,8/c/8c0d6b0dca5817118d2f528acb81b643d000c69a
 s

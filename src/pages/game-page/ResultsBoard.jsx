@@ -100,8 +100,8 @@ function Answer({ question, userAnswer, answerState }) {
     return (
         <TableRow>
             <TableCell align='center'>{questionString}</TableCell>
-            <TableCell align='center'>{question.answer}</TableCell>
             <TableCell align='center'>{userAnswer}</TableCell>
+            <TableCell align='center'>{question.answer}</TableCell>
             <TableCell align='center'>{answerStateToEmoji(answerState)}</TableCell>
         </TableRow>
     )

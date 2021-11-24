@@ -1,15 +1,11 @@
 import {useEffect, useRef, useState} from 'react'
-import IntervalButton from '../IntervalButton'
 import { generateQuestion } from '../../../utils/questionUtils'
-import GameBoard from "../game-board/GameBoard";
-import GamePresenter, {GameState} from "../GamePresenter";
-import ResultsBoard from "../ResultsBoard";
-import InGameStatistics from "../game-staticstics/InGameStatistics";
 import useGameStatisticsCollector from "../game-staticstics/useGameStatisticsCollector";
 import useStopWatchTimer from "../timers/useStopWatchTimer";
 import useAnswerRecorder from "../game-staticstics/useAnswerRecorder";
+import { GameState } from "./types";
 
-function GameController({ numberOfQuestions, startupCountDown }) {
+function GameController({ children, numberOfQuestions }) {
     const { elapsedSeconds, resumeTimer, pauseTimer } = useStopWatchTimer()
     const [ gameState, setGameState ] = useState(GameState.stopped)
     const { gameStatistics, onAskQuestion, onQuestionAnswered } = useGameStatisticsCollector(numberOfQuestions)
@@ -53,38 +49,20 @@ function GameController({ numberOfQuestions, startupCountDown }) {
         onQuestionAnswered(answerState)
     }
 
-    return (
-        <>
-            <GamePresenter
-                gameState={gameState}
-                inGameStats={
-                    <InGameStatistics
-                        elapsedSeconds={elapsedSeconds}
-                        questionNumber={gameStatistics.numberOfQuestionsAsked}
-                        totalNumberOfQuestions={numberOfQuestions}
-                    />
-                }
-                startButton={<IntervalButton text={startupCountDown} onCountDownCompleted={startGame} />}
-                gameBoard={
-                    <GameBoard
-                        hasMoreQuestions={gameStatistics.numberOfQuestionsRemaining > 0}
-                        onAskNextQuestion={handleAskNextQuestion}
-                        onQuestionAnswered={handleQuestionAnswered}
-                        onEndGame={endGame}
-                    />
-                }
-                scoreBoard={
-                    <ResultsBoard
-                        elapsedTime={elapsedSeconds}
-                        totalNumberOfQuestions={numberOfQuestions}
-                        numberOfQuestionsAnsweredCorrectly={gameStatistics.numberOfQuestionsAnsweredCorrectly}
-                        numberOfQuestionsAnsweredIncorrectly={gameStatistics.numberOfQuestionsAnsweredIncorrectly}
-                        answerHistory={answerHistory}
-                    />
-                }
-            />
-        </>
-    )
+    return children({
+        gameState,
+        elapsedSeconds,
+        gameStatistics,
+        answerHistory,
+        hasMoreQuestions: gameStatistics.numberOfQuestionsRemaining > 0,
+        numberOfQuestionsAsked: gameStatistics.numberOfQuestionsAsked,
+        numberOfQuestionsAnsweredCorrectly: gameStatistics.numberOfQuestionsAnsweredCorrectly,
+        numberOfQuestionsAnsweredIncorrectly: gameStatistics.numberOfQuestionsAnsweredIncorrectly,
+        onStartGame: startGame,
+        onEndGame: endGame,
+        onAskNextQuestion: handleAskNextQuestion,
+        onQuestionAnswered: handleQuestionAnswered,
+    })
 }
 
 export default GameController
