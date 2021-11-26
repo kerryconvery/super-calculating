@@ -16,7 +16,7 @@ const App = () => (
         <RandomBodyBackground />
         <Title>Super Calculating</Title>
         <GamePage
-            numberOfQuestions={5}
+            numberOfQuestions={10}
             startupCountDown={['Start', '5', '4', '3', '2', '1', 'GO!']}
         />
     </HorizontalCenter>
