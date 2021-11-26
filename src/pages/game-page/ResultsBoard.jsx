@@ -66,13 +66,13 @@ function ResultItem({ name, value }) {
 
 function AnswerHistory({ answerHistory }) {
     return (
-        <TableContainer>
-            <Table size='small'>
+        <TableContainer sx={{ maxHeight: 300 }}>
+            <Table size='small' stickyHeader>
                 <TableHead>
                     <TableRow>
-                        <TableCell>Question</TableCell>
-                        <TableCell>You answered</TableCell>
-                        <TableCell>Correct answer</TableCell>
+                        <TableCell align='center'>Question</TableCell>
+                        <TableCell align='center'>You answered</TableCell>
+                        <TableCell align='center'>Correct answer</TableCell>
                         <TableCell></TableCell>
                     </TableRow>
                 </TableHead>
