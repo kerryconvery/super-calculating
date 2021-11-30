@@ -25,8 +25,6 @@ J
 src/utils/questionUtils.js,3/8/38e4f83565a284bf72730ff1ba937382321c6c0e
 g
 7src/pages/game-page/game-board/answer-pad/AnswerPad.jsx,7/3/73cd8c7893f6a0af05f5cf7d0ea01a247d55b36a
-h
-8src/pages/game-page/game-board/buttons/EndGameButton.jsx,6/d/6de1559498c1e2edfa66eceaefdf6cec50b92de2
 e
 5src/pages/game-page/game-board/buttons/NextButton.jsx,d/a/da266c580b8c745ca7b191d345a3eaeb9df4f89f
 \
