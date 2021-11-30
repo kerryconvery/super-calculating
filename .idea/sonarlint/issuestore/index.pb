@@ -15,9 +15,6 @@ F
 src/utils/timeUtils.js,7/d/7d2df45501d646b7c2d6790bcd264badf2a35192
 x
 Hsrc/pages/game-page/game-staticstics/useGameStatisticsCollector.test.jsx,6/9/6960b386a9c1d2e44dcde44d99e206b0bc452080
-:
-
-index.html,f/6/f6013a00b362253c64368d6eebc50ea2131754e2
 s
 Csrc/pages/game-page/game-staticstics/useGameStatisticsCollector.jsx,9/f/9f29b6384a343550ed34cb93bb615ac3a040b4c9
 G
@@ -34,3 +31,11 @@ e
 5src/pages/game-page/game-board/buttons/NextButton.jsx,d/a/da266c580b8c745ca7b191d345a3eaeb9df4f89f
 \
 ,src/pages/game-page/game-board/GameBoard.jsx,f/1/f1d69b898900e58635512e7b39c35010e4ac97eb
+f
+6src/pages/game-page/game-controller/GameController.jsx,2/a/2a1a69f3a75d3b5c0a46dd93d0c42e24a08b6651
+\
+,src/pages/game-page/game-controller/types.js,a/8/a85aa86cefa6ba6579c4be2e3ab1e234041d11ef
+U
+%src/pages/game-page/GamePage.test.jsx,6/c/6cb0ef7adea07944fe4e76ac9639236e7803dca7
+<
+package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a

@@ -1,17 +1,31 @@
-import PageCenter from "./game-board/PageCenter";
+import { styled } from '@mui/material/styles'
 import { GameState } from "./game-controller/types";
+
+const VerticalCenter = styled('div')({
+    position: 'relative',
+    top: '50%',
+    transform: 'translateY(-50%)'
+})
+
+const FullHeight = styled('div')({
+    height: '100%'
+})
 
 function GamePresenter({ gameState, inGameStats, gameBoard, startButton, scoreBoard }) {
     const gameStateToView = () => {
         switch (gameState) {
             case GameState.stopped:
-                return startButton
+                return (
+                    <VerticalCenter>
+                        {startButton}
+                    </VerticalCenter>
+                )
             case GameState.started:
                 return (
-                    <>
+                    <VerticalCenter>
                         {inGameStats}
                         {gameBoard}
-                    </>
+                    </VerticalCenter>
                 )
             case GameState.completed:
                 return scoreBoard
@@ -21,9 +35,9 @@ function GamePresenter({ gameState, inGameStats, gameBoard, startButton, scoreBo
     }
 
     return (
-        <PageCenter>
+        <FullHeight>
             {gameStateToView()}
-        </PageCenter>
+        </FullHeight>
     )
 }
 
