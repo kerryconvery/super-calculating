@@ -1,6 +1,6 @@
 import React from 'react';
 import {styled} from "@mui/material";
-import RandomBodyBackground from "./pages/game-page/body-background/RandomBodyBackground";
+import RotateBodyBackgroundColor from "./pages/game-page/body-background/RotateBodyBackgroundColor";
 import { getRandomColor } from "./utils/colorUtils";
 import GamePage from './pages/game-page/GamePage'
 
@@ -23,7 +23,7 @@ const Content = styled('div')({
 
 const App = () => (
     <>
-        <RandomBodyBackground getRandomColor={getRandomColor} />
+        <RotateBodyBackgroundColor interval={2000} onNextColor={getRandomColor} />
         <GridContainer>
             <Title>Super Calculating</Title>
             <Content>

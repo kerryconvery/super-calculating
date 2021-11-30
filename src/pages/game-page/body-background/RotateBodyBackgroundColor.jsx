@@ -1,19 +1,19 @@
 import {useEffect} from "react";
 
-function RandomBodyBackground({ getRandomColor }) {
+function RotateBodyBackgroundColor({ interval, onNextColor }) {
     useEffect(() => {
         setRandomBackground()
 
         setInterval(() => {
             setRandomBackground()
-        }, 2000)
+        }, interval)
     }, [])
 
     const setRandomBackground = () => {
-        document.body.style.backgroundColor = getRandomColor()
+        document.body.style.backgroundColor = onNextColor()
     }
 
     return <></>
 }
 
-export default RandomBodyBackground
+export default RotateBodyBackgroundColor
