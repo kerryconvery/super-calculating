@@ -7,7 +7,9 @@ const VerticalCenter = styled('div')({
     transform: 'translateY(-50%)'
 })
 
-const FullHeight = styled('div')({
+const GameContainer = styled('div')({
+    marginLeft: '1rem',
+    marginRight: '1rem',
     height: '100%'
 })
 
@@ -35,9 +37,9 @@ function GamePresenter({ gameState, inGameStats, gameBoard, startButton, scoreBo
     }
 
     return (
-        <FullHeight>
+        <GameContainer>
             {gameStateToView()}
-        </FullHeight>
+        </GameContainer>
     )
 }
 

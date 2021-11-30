@@ -22,7 +22,7 @@ const Content = styled('div')({
 
 const App = () => (
     <>
-        {/*<RandomBodyBackground />*/}
+        <RandomBodyBackground />
         <GridContainer>
             <Title>Super Calculating</Title>
             <Content>

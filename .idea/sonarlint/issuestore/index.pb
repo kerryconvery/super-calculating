@@ -17,8 +17,6 @@ x
 Hsrc/pages/game-page/game-staticstics/useGameStatisticsCollector.test.jsx,6/9/6960b386a9c1d2e44dcde44d99e206b0bc452080
 s
 Csrc/pages/game-page/game-staticstics/useGameStatisticsCollector.jsx,9/f/9f29b6384a343550ed34cb93bb615ac3a040b4c9
-G
-src/utils/colorUtils.js,8/6/8639ada2a0b2790df1a223885ac4476f184b1daa
 F
 src/utils/testUtils.js,d/3/d3ba97c6671d07ffdd63dbff746f9e8e231157e2
 J
