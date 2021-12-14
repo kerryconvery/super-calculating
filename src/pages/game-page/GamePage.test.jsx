@@ -1,4 +1,4 @@
-import {render, screen, act, waitFor } from '@testing-library/react'
+import {render, screen, act, waitFor, within, fireEvent} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import * as questionUtils from '../../utils/questionUtils'
 import {TwoDigitQuestion} from "../../utils/questionUtils";
@@ -7,8 +7,44 @@ import GamePage from './GamePage'
 
 jest.useFakeTimers()
 
-describe('Game controller', () => {
-    describe('When playing the game', () => {
+jest.mock('@mui/material/Slider', () => (props) => {
+    const { id, name, min, max, defaultValue, onChange } = props;
+    return (
+        <input
+            aria-labelledby={props['aria-labelledby']}
+            type="range"
+            id={id}
+            name={name}
+            min={min}
+            max={max}
+            value={defaultValue}
+            onChange={onChange}
+        />
+    );
+});
+
+describe('Game page', () => {
+    describe('before starting the game', () => {
+        it('Sets a default number of questions', async () => {
+            renderGamePage()
+
+            expect(screen.getByLabelText('Change the number of questions').value).toEqual('3')
+        })
+
+        it('allows the player to select the number of questions from a predefined list', async () => {
+            renderGamePage()
+
+            fireEvent.change( screen.getByLabelText('Change the number of questions'), { target: { value: 2 } })
+
+            await pressTheStartButton()
+
+            await waitForQuestion()
+
+            expect(screen.getByText('Question 1 of 2')).toBeInTheDocument()
+        })
+    })
+
+    describe('Playing the game', () => {
         beforeEach(startTheGame)
 
         describe('when the start button is pressed', () => {
@@ -29,7 +65,7 @@ describe('Game controller', () => {
             })
         })
 
-        describe('when playing the game', () => {
+        describe('while playing the game', () => {
             it('displays the initial question number out of the total number of questions', async () => {
                 await waitForQuestion()
 
@@ -85,7 +121,7 @@ describe('Game controller', () => {
         })
     })
 
-    describe('When the game has ended', () => {
+    describe('after the game has ended', () => {
         it('displays the score board when all the questions have been answered', async () => {
             const { container } = await startTheGame()
 
@@ -121,7 +157,7 @@ function renderGamePage() {
     jest.spyOn(questionUtils, 'generateQuestion')
         .mockReturnValue(TwoDigitQuestion.set(5, 8))
 
-    return render(<GamePage numberOfQuestions={3} startupCountDown={['Start', '1', 'GO!']} />)
+    return render(<GamePage defaultNumberOfQuestions={3} startupCountDown={['Start', '1', 'GO!']} />)
 }
 
 function pressTheStartButton() {

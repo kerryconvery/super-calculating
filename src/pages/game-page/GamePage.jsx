@@ -1,15 +1,20 @@
+import {useState} from "react";
 import IntervalButton from './IntervalButton'
 import GameBoard from "./game-board/GameBoard";
 import GamePresenter from "./GamePresenter";
 import ResultsBoard from "./ResultsBoard";
 import InGameStatistics from "./game-staticstics/InGameStatistics";
 import GameController from './game-controller/GameController';
+import QuestionSelector from "./question-selector/QuestionSelector";
 
-function GamePage({ numberOfQuestions, startupCountDown }) {
+function GamePage({ defaultNumberOfQuestions, startupCountDown }) {
+    const [numberOfQuestions, setNumberOfQuestions] = useState(defaultNumberOfQuestions)
+
     return (
         <GameController numberOfQuestions={numberOfQuestions}>
             {props => (
                 <GamePresenter
+                    questionSelector={<QuestionSelector defaultNumberOfQuestions={defaultNumberOfQuestions} onChange={setNumberOfQuestions} />}
                     gameState={props.gameState}
                     inGameStats={
                         <InGameStatistics
