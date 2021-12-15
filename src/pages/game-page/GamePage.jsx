@@ -1,15 +1,27 @@
+import {useState} from "react";
 import IntervalButton from './IntervalButton'
 import GameBoard from "./game-board/GameBoard";
 import GamePresenter from "./GamePresenter";
 import ResultsBoard from "./ResultsBoard";
 import InGameStatistics from "./game-staticstics/InGameStatistics";
 import GameController from './game-controller/GameController';
+import QuestionSelector from "./question-selector/QuestionSelector";
 
-function GamePage({ numberOfQuestions, startupCountDown }) {
+function GamePage({ defaultNumberOfQuestions, startupCountDown }) {
+    const [numberOfQuestions, setNumberOfQuestions] = useState(defaultNumberOfQuestions)
+    const [gameStarting, setGameStarting] = useState(false)
+
     return (
         <GameController numberOfQuestions={numberOfQuestions}>
             {props => (
                 <GamePresenter
+                    questionSelector={
+                        <QuestionSelector
+                            hide={gameStarting}
+                            defaultNumberOfQuestions={defaultNumberOfQuestions}
+                            onChange={setNumberOfQuestions}
+                        />
+                    }
                     gameState={props.gameState}
                     inGameStats={
                         <InGameStatistics
@@ -18,7 +30,13 @@ function GamePage({ numberOfQuestions, startupCountDown }) {
                             totalNumberOfQuestions={numberOfQuestions}
                         />
                     }
-                    startButton={<IntervalButton text={startupCountDown} onCountDownCompleted={props.onStartGame}/>}
+                    startButton={
+                        <IntervalButton
+                            text={startupCountDown}
+                            onCountDownStarted={() => setGameStarting(true)}
+                            onCountDownCompleted={props.onStartGame}
+                        />
+                    }
                     gameBoard={
                         <GameBoard
                             hasMoreQuestions={props.hasMoreQuestions}

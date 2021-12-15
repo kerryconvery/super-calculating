@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Game controller When the game has ended displays the score board when all the questions have been answered 1`] = `
+exports[`Game page after the game has ended displays the score board when all the questions have been answered 1`] = `
 <div
   class="css-p192ua"
 >

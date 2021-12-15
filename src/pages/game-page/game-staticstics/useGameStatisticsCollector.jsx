@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import {useEffect, useState} from 'react'
 import {AnswerState} from "../game-board/answer-pad/AnswerPad";
 
 function useGameStatisticsCollector(numberOfQuestions) {
@@ -9,6 +9,18 @@ function useGameStatisticsCollector(numberOfQuestions) {
         numberOfQuestionsAnsweredCorrectly: 0,
         numberOfQuestionsAnsweredIncorrectly: 0,
     })
+
+    useEffect(() => {
+        setNumberOfQuestions(numberOfQuestions)
+    }, [numberOfQuestions])
+
+    const setNumberOfQuestions = (newNumberOfQuestions) => {
+        setGameStatistics({
+            ...gameStatistics,
+            totalNumberOfQuestions: newNumberOfQuestions,
+            numberOfQuestionsRemaining: newNumberOfQuestions,
+        })
+    }
 
     const onAskQuestion = () => {
         setGameStatistics({

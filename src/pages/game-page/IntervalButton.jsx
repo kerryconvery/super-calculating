@@ -24,7 +24,7 @@ const initialState = {
     count: 0
 }
 
-function IntervalButton({ text, onCountDownCompleted }) {
+function IntervalButton({ text, onCountDownStarted, onCountDownCompleted }) {
     const [{ count, intervalState }, dispatch] = useReducer(reducer, initialState)
     const intervalRef = useRef(0)
 
@@ -41,6 +41,8 @@ function IntervalButton({ text, onCountDownCompleted }) {
     }, [])
 
     const onButtonClick = () => {
+        onCountDownStarted()
+
         dispatch({ type: IntervalState.starting })
     }
 

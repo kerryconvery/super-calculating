@@ -27,7 +27,7 @@ const App = () => (
         <GridContainer>
             <Title>Super Calculating</Title>
             <Content>
-                <GamePage numberOfQuestions={10} startupCountDown={['Start', '5', '4', '3', '2', '1', 'GO!']} />
+                <GamePage defaultNumberOfQuestions={10} startupCountDown={['Start', '5', '4', '3', '2', '1', 'GO!']} />
             </Content>
         </GridContainer>
     </>
