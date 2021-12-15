@@ -74,6 +74,20 @@ exports[`Game page after the game has ended displays the score board when all th
             2
           </td>
         </tr>
+        <tr
+          class="MuiTableRow-root css-1y5vm7s-MuiTableRow-root"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeSmall css-dsuxgy-MuiTableCell-root"
+          >
+            Percentage answered correctly
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
+          >
+            33.33333333333333%
+          </td>
+        </tr>
       </tbody>
     </table>
     <div

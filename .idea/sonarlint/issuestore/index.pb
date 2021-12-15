@@ -21,8 +21,6 @@ e
 package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
 A
 webpack.common.js,d/0/d06806c1cc82bd1781be984b85882961da77e838
-i
-9src/pages/game-page/game-staticstics/InGameStatistics.jsx,f/d/fd573e9711a75643906252fe81e74a580572553d
 =
 src/index.jsx,8/0/803a01c593b21a1ddcd457e52bebd714950f99f4
 ]

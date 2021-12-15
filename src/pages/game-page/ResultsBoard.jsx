@@ -43,6 +43,11 @@ function ResultsBoard(props) {
 }
 
 function ResultSummary({ elapsedTime, totalNumberOfQuestions, numberOfQuestionsAnsweredCorrectly, numberOfQuestionsAnsweredIncorrectly }){
+
+    const getPercentageCorrect = () => {
+        return (numberOfQuestionsAnsweredCorrectly / totalNumberOfQuestions) * 100
+    }
+
     return (
         <Table size='small' sx={{ marginTop: '2rem' }}>
             <TableBody>
@@ -50,6 +55,7 @@ function ResultSummary({ elapsedTime, totalNumberOfQuestions, numberOfQuestionsA
                 <ResultItem name='Questions asked' value={totalNumberOfQuestions} />
                 <ResultItem name='Questions answered correctly' value={numberOfQuestionsAnsweredCorrectly} />
                 <ResultItem name='Questions answered incorrectly' value={numberOfQuestionsAnsweredIncorrectly} />
+                <ResultItem name='Percentage answered correctly' value={`${getPercentageCorrect()}%`} />
             </TableBody>
         </Table>
     )
