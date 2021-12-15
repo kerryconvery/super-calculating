@@ -28,13 +28,13 @@ describe('Game page', () => {
         it('Sets a default number of questions', async () => {
             renderGamePage()
 
-            expect(screen.getByLabelText('Change the number of questions').value).toEqual('3')
+            expect(screen.getByLabelText(/Number of questions:/).value).toEqual('3')
         })
 
         it('allows the player to select the number of questions from a predefined list', async () => {
             renderGamePage()
 
-            fireEvent.change( screen.getByLabelText('Change the number of questions'), { target: { value: 2 } })
+            fireEvent.change( screen.getByLabelText(/Number of questions:/), { target: { value: 2 } })
 
             await pressTheStartButton()
 
@@ -42,12 +42,33 @@ describe('Game page', () => {
 
             expect(screen.getByText('Question 1 of 2')).toBeInTheDocument()
         })
+
+        it('asks only the selected number of questions before ending the game', async () => {
+            renderGamePage()
+
+            fireEvent.change( screen.getByLabelText(/Number of questions:/), { target: { value: 2 } })
+
+            await pressTheStartButton()
+
+            await waitForQuestion()
+
+            await answerTheQuestionWith('13')
+            await clickTheNextButton()
+
+            await answerTheQuestionWith('9')
+
+            expect(screen.getByText('End game')).toBeInTheDocument()
+        })
     })
 
     describe('Playing the game', () => {
         beforeEach(startTheGame)
 
         describe('when the start button is pressed', () => {
+            it('hides the question selector', () => {
+                expect(screen.queryByLabelText(/Number of questions:/)).not.toBeInTheDocument()
+            })
+
             it('Counts down from Start to 1', () => {
                 expect(screen.getByText('1')).toBeInTheDocument()
             })

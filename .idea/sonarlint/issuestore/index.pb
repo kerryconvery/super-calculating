@@ -13,16 +13,10 @@ H
 docs/index.html,8/c/8c0d6b0dca5817118d2f528acb81b643d000c69a
 F
 src/utils/timeUtils.js,7/d/7d2df45501d646b7c2d6790bcd264badf2a35192
-x
-Hsrc/pages/game-page/game-staticstics/useGameStatisticsCollector.test.jsx,6/9/6960b386a9c1d2e44dcde44d99e206b0bc452080
-F
-src/utils/testUtils.js,d/3/d3ba97c6671d07ffdd63dbff746f9e8e231157e2
 J
 src/utils/questionUtils.js,3/8/38e4f83565a284bf72730ff1ba937382321c6c0e
 e
 5src/pages/game-page/game-board/buttons/NextButton.jsx,d/a/da266c580b8c745ca7b191d345a3eaeb9df4f89f
-\
-,src/pages/game-page/game-controller/types.js,a/8/a85aa86cefa6ba6579c4be2e3ab1e234041d11ef
 <
 package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
 A
@@ -52,8 +46,6 @@ G
 src/utils/colorUtils.js,8/6/8639ada2a0b2790df1a223885ac4476f184b1daa
 q
 Asrc/pages/game-page/body-background/RotateBodyBackgroundColor.jsx,e/e/eecdbfb2f563692fe0e6ae570543138678f32fbf
-s
-Csrc/pages/game-page/game-staticstics/useGameStatisticsCollector.jsx,9/f/9f29b6384a343550ed34cb93bb615ac3a040b4c9
 d
 4src/pages/game-page/game-board/QuestionPresenter.jsx,c/b/cbc6891de96538db7efa76ec7808eae57640c5d9
 g

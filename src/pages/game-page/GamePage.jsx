@@ -9,12 +9,19 @@ import QuestionSelector from "./question-selector/QuestionSelector";
 
 function GamePage({ defaultNumberOfQuestions, startupCountDown }) {
     const [numberOfQuestions, setNumberOfQuestions] = useState(defaultNumberOfQuestions)
+    const [gameStarting, setGameStarting] = useState(false)
 
     return (
         <GameController numberOfQuestions={numberOfQuestions}>
             {props => (
                 <GamePresenter
-                    questionSelector={<QuestionSelector defaultNumberOfQuestions={defaultNumberOfQuestions} onChange={setNumberOfQuestions} />}
+                    questionSelector={
+                        <QuestionSelector
+                            hide={gameStarting}
+                            defaultNumberOfQuestions={defaultNumberOfQuestions}
+                            onChange={setNumberOfQuestions}
+                        />
+                    }
                     gameState={props.gameState}
                     inGameStats={
                         <InGameStatistics
@@ -23,7 +30,13 @@ function GamePage({ defaultNumberOfQuestions, startupCountDown }) {
                             totalNumberOfQuestions={numberOfQuestions}
                         />
                     }
-                    startButton={<IntervalButton text={startupCountDown} onCountDownCompleted={props.onStartGame}/>}
+                    startButton={
+                        <IntervalButton
+                            text={startupCountDown}
+                            onCountDownStarted={() => setGameStarting(true)}
+                            onCountDownCompleted={props.onStartGame}
+                        />
+                    }
                     gameBoard={
                         <GameBoard
                             hasMoreQuestions={props.hasMoreQuestions}

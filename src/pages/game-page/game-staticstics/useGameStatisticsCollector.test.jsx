@@ -14,6 +14,19 @@ describe('useGameStatisticsCollector', () => {
 
     })
 
+    it('returns an updated number of questions', async () => {
+        const newNumberOfQuestions = 5
+        const { result, rerender } = renderHook(
+            (props) => useGameStatisticsCollector(props.numberOfQuestions),
+            { initialProps: { numberOfQuestions: totalNumberOfQuestions }})
+
+        rerender({ numberOfQuestions: newNumberOfQuestions })
+
+        expect(result.current.gameStatistics.totalNumberOfQuestions).toEqual(newNumberOfQuestions)
+        expect(result.current.gameStatistics.numberOfQuestionsRemaining).toEqual(newNumberOfQuestions)
+
+    })
+
     it('returns the number of questions asked and, after a question has been answered, the number remaining', async () => {
         const { result } = renderHook(() => useGameStatisticsCollector(totalNumberOfQuestions))
 
