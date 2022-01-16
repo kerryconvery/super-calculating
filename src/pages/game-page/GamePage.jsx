@@ -5,7 +5,7 @@ import GamePresenter from "./GamePresenter";
 import ResultsBoard from "./ResultsBoard";
 import InGameStatistics from "./game-staticstics/InGameStatistics";
 import GameController from './game-controller/GameController';
-import QuestionSelector from "./question-selector/QuestionSelector";
+import QuestionCountSelector from "./question-selector/QuestionCountSelector";
 
 function GamePage({ defaultNumberOfQuestions, startupCountDown }) {
     const [numberOfQuestions, setNumberOfQuestions] = useState(defaultNumberOfQuestions)
@@ -16,7 +16,7 @@ function GamePage({ defaultNumberOfQuestions, startupCountDown }) {
             {props => (
                 <GamePresenter
                     questionSelector={
-                        <QuestionSelector
+                        <QuestionCountSelector
                             hide={gameStarting}
                             defaultNumberOfQuestions={defaultNumberOfQuestions}
                             onChange={setNumberOfQuestions}

@@ -1,10 +1,10 @@
 import AnswerPad, { AnswerState } from "./answer-pad/AnswerPad";
 import QuestionPresenter from "./QuestionPresenter";
-import { TwoDigitQuestion} from "../../../utils/questionUtils";
 import {useEffect, useState} from "react";
 import NextQuestionOrEndGame from "./buttons/NextQuestionOfEndGame";
 import CorrectOrWrongAnswer from "./correct-or-wrong-answer/CorrectOrWrongAnswer";
 import AnswerBox from "./AnswerBox";
+import { Question } from "../../../utils/questionUtils";
 
 function GameBoard({ hasMoreQuestions, onAskNextQuestion, onQuestionAnswered, onEndGame }) {
     const { nextQuestion, askNextQuestion } = useNextQuestion(onAskNextQuestion)
@@ -74,7 +74,7 @@ function GameBoard({ hasMoreQuestions, onAskNextQuestion, onQuestionAnswered, on
 }
 
 function useNextQuestion(generateQuestion) {
-    const [ nextQuestion, setNextQuestion ] = useState(TwoDigitQuestion.empty())
+    const [ nextQuestion, setNextQuestion ] = useState(Question.empty())
     const askNextQuestion = () => setNextQuestion(generateQuestion())
 
     useEffect(() => {

@@ -1,5 +1,5 @@
 import {fireEvent, render, screen} from "@testing-library/react";
-import QuestionSelector from "./QuestionSelector";
+import QuestionCountSelector from "./QuestionCountSelector";
 
 jest.mock('@mui/material/Slider', () => (props) => {
     const { id, name, min, max, defaultValue, onChange } = props;
@@ -19,13 +19,13 @@ jest.mock('@mui/material/Slider', () => (props) => {
 
 describe('Question selector', () => {
     it('displays the default number of questions to ask', () => {
-        render(<QuestionSelector defaultNumberOfQuestions={5} />)
+        render(<QuestionCountSelector defaultNumberOfQuestions={5} />)
 
         expect(screen.getByText('Number of questions: 5')).toBeInTheDocument()
     })
 
     it('displays the new number of questions to ask', () => {
-        render(<QuestionSelector defaultNumberOfQuestions={5} onChange={() => {}} />)
+        render(<QuestionCountSelector defaultNumberOfQuestions={5} onChange={() => {}} />)
 
         fireEvent.change( screen.getByLabelText(/Number of questions:/), { target: { value: 2 } })
 

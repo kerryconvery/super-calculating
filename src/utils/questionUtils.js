@@ -1,22 +1,30 @@
-export const TwoDigitQuestion = {
-    empty: () => ({
-        components: [],
-        answer: 0
-    }),
-    set: (firstNumber, secondNumber) => (
-        {
-            components: [firstNumber, secondNumber],
-            answer: firstNumber + secondNumber
+export const Question = {
+    set: ({ value, answer }) => {
+        return {
+            value,
+            answer,
         }
-    ),
-    toString: (question) => {
-        return question.components.join(' + ')
+    },
+    empty: () => {
+        return {
+            value: '',
+            answer: 0
+        }
+    }
+}
+
+const TwoDigitAdditionQuestion = {
+    generate: () => {
+        const firstNumber = Math.floor(Math.random() * 10) + 1;
+        const secondNumber = Math.floor(Math.random() * 10) + 1;
+
+        return Question.set({
+            value: `${firstNumber} + ${secondNumber}`,
+            answer: firstNumber + secondNumber
+        })
     }
 }
 
 export function generateQuestion() {
-    const firstNumber = Math.floor(Math.random() * 10) + 1;
-    const secondNumber = Math.floor(Math.random() * 10) + 1;
-
-    return TwoDigitQuestion.set(firstNumber, secondNumber)
+    return TwoDigitAdditionQuestion.generate()
 }

@@ -2,7 +2,7 @@ import InputLabel from '@mui/material/InputLabel'
 import Slider from '@mui/material/Slider'
 import {useState} from "react";
 
-function QuestionSelector({ hide, onChange, defaultNumberOfQuestions }) {
+function QuestionCountSelector({ hide, onChange, defaultNumberOfQuestions }) {
     const [numberOfQuestions, setNumberOfQuestions] = useState(defaultNumberOfQuestions)
 
     if (hide) {
@@ -27,4 +27,4 @@ function QuestionSelector({ hide, onChange, defaultNumberOfQuestions }) {
     )
 }
 
-export default QuestionSelector
+export default QuestionCountSelector

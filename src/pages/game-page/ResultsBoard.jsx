@@ -7,7 +7,6 @@ import TableHead from '@mui/material/TableHead'
 import TableContainer from '@mui/material/TableContainer'
 import {AnswerState} from "./game-board/answer-pad/AnswerPad";
 import {formatElapsedSeconds} from "../../utils/timeUtils";
-import {TwoDigitQuestion} from "../../utils/questionUtils";
 
 const FlexContainer = styled('div')({
     display: 'flex',
@@ -109,11 +108,9 @@ function AnswerHistory({ answerHistory }) {
 }
 
 function Answer({ question, userAnswer, answerState }) {
-    const questionString = TwoDigitQuestion.toString(question)
-
     return (
         <TableRow>
-            <TableCell align='center'>{questionString}</TableCell>
+            <TableCell align='center'>{question.value}</TableCell>
             <TableCell align='center'>{userAnswer}</TableCell>
             <TableCell align='center'>{question.answer}</TableCell>
             <TableCell align='center'>{answerStateToEmoji(answerState)}</TableCell>
