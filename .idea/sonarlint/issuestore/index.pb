@@ -64,23 +64,5 @@ Hsrc/pages/game-page/game-staticstics/useGameStatisticsCollector.test.jsx,6/9/6
 package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
 o
 ?src/pages/game-page/question-selector/QuestionCountSelector.jsx,e/4/e42d969e659afd0796dee53648b728aab392eca6
-P
- src/pages/game-page/GamePage.jsx,2/a/2aaa2f2f8eb79f51af5fde025bb41c2bacba17ab
 f
 6src/pages/game-page/game-controller/GameController.jsx,2/a/2a1a69f3a75d3b5c0a46dd93d0c42e24a08b6651
-a
-1src/pages/game-page/game-board/GameBoard.test.jsx,d/e/dea0ba421cd6a35742fdecaa72a17cb1a1d59ddc
-o
-?src/pages/game-page/question-selector/QuestionSelector.test.jsx,3/5/3567fc94f153a020dfc812c83182b81df0c912b2
-U
-%src/pages/game-page/GamePage.test.jsx,6/c/6cb0ef7adea07944fe4e76ac9639236e7803dca7
-d
-4src/pages/game-page/game-board/QuestionPresenter.jsx,c/b/cbc6891de96538db7efa76ec7808eae57640c5d9
-J
-src/utils/questionUtils.js,3/8/38e4f83565a284bf72730ff1ba937382321c6c0e
-T
-$src/pages/game-page/ResultsBoard.jsx,a/b/ab74cffddd61e01be500b6f50d39d370c379fedf
-;
-src/App.jsx,c/0/c0e9e59a467e1546695bfa22746b302540797a4e
-\
-,src/pages/game-page/game-board/GameBoard.jsx,f/1/f1d69b898900e58635512e7b39c35010e4ac97eb
