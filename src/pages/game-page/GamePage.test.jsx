@@ -176,7 +176,7 @@ async function startTheGame() {
 
 function renderGamePage() {
     jest.spyOn(questionUtils, 'generateQuestion')
-        .mockReturnValue(Question.set({ value: '5 + 8', answer: 13 }))
+        .mockReturnValue(Question.create({ question: '5 + 8', answer: 13 }))
 
     return render(<GamePage defaultNumberOfQuestions={3} startupCountDown={['Start', '1', 'GO!']} />)
 }

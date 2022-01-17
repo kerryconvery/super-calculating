@@ -1,7 +1,9 @@
+import randomMathQuestion from 'random-math-question'
+
 export const Question = {
-    set: ({ value, answer }) => {
+    create: ({ question, answer }) => {
         return {
-            value,
+            value: question,
             answer,
         }
     },
@@ -13,40 +15,19 @@ export const Question = {
     }
 }
 
-const TwoDigitAdditionQuestion = {
-    generate: () => {
-        const firstNumber = Math.floor(Math.random() * 10) + 1;
-        const secondNumber = Math.floor(Math.random() * 10) + 1;
-
-        return Question.set({
-            value: `${firstNumber} + ${secondNumber}`,
-            answer: firstNumber + secondNumber
-        })
-    }
-}
-
-const TwoDigitSubtractionQuestion = {
-    generate: () => {
-        const firstNumber = Math.floor(Math.random() * 10) + 1;
-        const secondNumber = Math.floor(Math.random() * 10) + 1;
-
-        let value = `${firstNumber} - ${secondNumber}`
-
-        if (firstNumber < secondNumber) {
-            value = `${secondNumber} - ${firstNumber}`
-        }
-
-        return Question.set({
-            value,
-            answer: Math.abs(firstNumber - secondNumber)
-        })
-    }
-}
-
 export function generateQuestion() {
-    if (Math.random() >= 0.5) {
-        return TwoDigitAdditionQuestion.generate()
-    } else {
-        return TwoDigitSubtractionQuestion.generate()
-    }
+    return Question.create(getRandomQuestion())
+}
+
+function getRandomQuestion() {
+    let randomQuestion
+    do {
+        randomQuestion = randomMathQuestion.get({
+            numberRange: '1-120',
+            amountOfNumber: '2-4',
+            operations: ['+', '-'],
+        })
+    } while (randomQuestion.answer < 0)
+
+    return randomQuestion
 }

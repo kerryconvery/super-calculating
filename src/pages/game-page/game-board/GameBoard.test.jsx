@@ -11,8 +11,8 @@ import userEvent from "@testing-library/user-event";
 import {Question} from "../../../utils/questionUtils";
 
 const questions = [
-    Question.set({ value: '5 + 8', answer: 13 }),
-    Question.set({ value: '12 + 3', answer: 15 })
+    Question.create({ question: '5 + 8', answer: 13 }),
+    Question.create({ question: '12 + 3', answer: 15 })
 ]
 
 describe('Game board', () => {
