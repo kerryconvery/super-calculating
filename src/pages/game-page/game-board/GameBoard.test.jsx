@@ -6,9 +6,9 @@ import {
 } from "../../../utils/testUtils";
 import {render, screen, waitFor} from "@testing-library/react";
 import GameBoard from "./GameBoard";
-import {AnswerState} from "./answer-pad/AnswerPad";
+import { AnswerState } from "./answer-pad/AnswerPad";
 import userEvent from "@testing-library/user-event";
-import {Question} from "../../../utils/questionUtils";
+import Question from "../../../question-genertor/Question";
 
 const questions = [
     Question.create({ question: '5 + 8', answer: 13 }),

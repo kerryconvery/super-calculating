@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import NextQuestionOrEndGame from "./buttons/NextQuestionOfEndGame";
 import CorrectOrWrongAnswer from "./correct-or-wrong-answer/CorrectOrWrongAnswer";
 import AnswerBox from "./AnswerBox";
-import { Question } from "../../../utils/questionUtils";
+import Question from "../../../question-genertor/Question";
 
 function GameBoard({ hasMoreQuestions, onAskNextQuestion, onQuestionAnswered, onEndGame }) {
     const { nextQuestion, askNextQuestion } = useNextQuestion(onAskNextQuestion)

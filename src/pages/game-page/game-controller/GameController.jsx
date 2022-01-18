@@ -1,5 +1,5 @@
 import {useEffect, useRef, useState} from 'react'
-import { generateQuestion } from '../../../utils/questionUtils'
+import { generateQuestion } from '../../../question-genertor/questionGenerator'
 import useGameStatisticsCollector from "../game-staticstics/useGameStatisticsCollector";
 import useStopWatchTimer from "../timers/useStopWatchTimer";
 import useAnswerRecorder from "../game-staticstics/useAnswerRecorder";

@@ -1,9 +1,9 @@
 import {render, screen, act, waitFor, within, fireEvent} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import * as questionUtils from '../../utils/questionUtils'
+import * as QuestionGenerator from '../../question-genertor/questionGenerator'
 import {answerTheQuestionWith, clickTheEndGameButton, clickTheNextButton} from "../../utils/testUtils";
 import GamePage from './GamePage'
-import {Question} from "../../utils/questionUtils";
+import Question from "../../question-genertor/Question";
 
 jest.useFakeTimers()
 
@@ -175,7 +175,7 @@ async function startTheGame() {
 }
 
 function renderGamePage() {
-    jest.spyOn(questionUtils, 'generateQuestion')
+    jest.spyOn(QuestionGenerator, 'generateQuestion')
         .mockReturnValue(Question.create({ question: '5 + 8', answer: 13 }))
 
     return render(<GamePage defaultNumberOfQuestions={3} startupCountDown={['Start', '1', 'GO!']} />)

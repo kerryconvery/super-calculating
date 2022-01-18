@@ -64,5 +64,3 @@ Hsrc/pages/game-page/game-staticstics/useGameStatisticsCollector.test.jsx,6/9/6
 package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
 o
 ?src/pages/game-page/question-selector/QuestionCountSelector.jsx,e/4/e42d969e659afd0796dee53648b728aab392eca6
-f
-6src/pages/game-page/game-controller/GameController.jsx,2/a/2a1a69f3a75d3b5c0a46dd93d0c42e24a08b6651
