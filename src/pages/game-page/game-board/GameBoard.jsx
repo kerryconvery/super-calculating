@@ -8,44 +8,43 @@ import Question from "../../../question-genertor/Question";
 
 function GameBoard({ hasMoreQuestions, onAskNextQuestion, onQuestionAnswered, onEndGame }) {
     const { nextQuestion, askNextQuestion } = useNextQuestion(onAskNextQuestion)
-    const { userAnswer, answerState, clearUserAnswer, updateUserAnswer, checkAnswer } = useUserAnswer(nextQuestion, onQuestionAnswered)
+    const { userAnswer, clearUserAnswer, updateUserAnswer } = useUserAnswer()
+    const { answerState, checkAnswer, resetAnswerState } = useAnswerChecker(nextQuestion, userAnswer, onQuestionAnswered)
 
     const handleNextQuestion = () => {
         clearUserAnswer()
+        resetAnswerState()
         askNextQuestion()
     }
 
-    switch (answerState) {
-        case AnswerState.NONE: {
-            return (
-                <>
-                    <QuestionPresenter question={nextQuestion} />
-                    <AnswerBox answer={userAnswer} />
-                    <AnswerPad
-                        userAnswer={userAnswer}
-                        onEnterAnswer={updateUserAnswer}
-                        onCheckAnswer={checkAnswer}
-                        onClearAnswer={clearUserAnswer}
-                    />
-                </>
-            )
-        }
-        case AnswerState.CORRECT:
-        case AnswerState.WRONG: {
-            return  (
-                <>
-                    <CorrectOrWrongAnswer answerState={answerState} correctAnswer={nextQuestion.answer} />
-                    <NextQuestionOrEndGame
-                        hasMoreQuestions={hasMoreQuestions}
-                        onNextQuestion={handleNextQuestion}
-                        onEndGame={onEndGame}
-                    />
-                </>
-            )
-        }
-        default: {
-            throw new Error(`Unsupported answer state ${answerState}`)
-        }
+    const submitUserAnswer = () => {
+        checkAnswer()
+    }
+
+    if(answerState === AnswerState.UNANSWERED) {
+        return (
+            <>
+                <QuestionPresenter question={nextQuestion} />
+                <AnswerBox answer={userAnswer} />
+                <AnswerPad
+                    userAnswer={userAnswer}
+                    onEnterAnswer={updateUserAnswer}
+                    onCheckAnswer={submitUserAnswer}
+                    onClearAnswer={clearUserAnswer}
+                />
+            </>
+        )
+    } else {
+        return (
+            <>
+                <CorrectOrWrongAnswer answerState={answerState} correctAnswer={nextQuestion.answer}/>
+                <NextQuestionOrEndGame
+                    hasMoreQuestions={hasMoreQuestions}
+                    onNextQuestion={handleNextQuestion}
+                    onEndGame={onEndGame}
+                />
+            </>
+        )
     }
 }
 
@@ -63,31 +62,41 @@ function useNextQuestion(generateQuestion) {
     }
 }
 
-function useUserAnswer(nextQuestion, onQuestionAnswered) {
+function useUserAnswer() {
     const [ userAnswer, setUserAnswer ] = useState('')
-    const [ answerState, setAnswerState ] = useState(AnswerState.NONE)
 
     const clearUserAnswer = () => {
         setUserAnswer('')
-        setAnswerState(AnswerState.NONE)
     }
 
     const updateUserAnswer = (answer) => {
         setUserAnswer(answer)
     }
 
+    return {
+        userAnswer,
+        clearUserAnswer,
+        updateUserAnswer,
+    }
+}
+
+function useAnswerChecker(nextQuestion, userAnswer, onQuestionAnswered) {
+    const [ answerState, setAnswerState ] = useState(AnswerState.UNANSWERED)
+
+    const resetAnswerState = () => {
+        setAnswerState(AnswerState.UNANSWERED)
+    }
+
     const checkAnswer = () => {
         let newAnswerState = nextQuestion.answer === parseInt(userAnswer) ? AnswerState.CORRECT : AnswerState.WRONG
 
-        onQuestionAnswered(nextQuestion, userAnswer, newAnswerState)
         setAnswerState(newAnswerState)
+        onQuestionAnswered(nextQuestion, userAnswer, newAnswerState)
     }
 
     return {
-        userAnswer,
         answerState,
-        clearUserAnswer,
-        updateUserAnswer,
+        resetAnswerState,
         checkAnswer
     }
 }

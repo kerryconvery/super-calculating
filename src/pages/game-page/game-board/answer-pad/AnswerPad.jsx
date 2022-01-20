@@ -6,7 +6,7 @@ import NumberKeyPad from "../key-pad/NumberKeyPad";
 import MissingAnswerError from "../validation-errrors/MissingAnswerError";
 
 export const AnswerState = {
-    NONE: 'none',
+    UNANSWERED: 'unanswered',
     CORRECT: 'correct',
     WRONG: 'wrong'
 }
