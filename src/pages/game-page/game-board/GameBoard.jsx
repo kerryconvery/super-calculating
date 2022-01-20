@@ -8,34 +8,11 @@ import Question from "../../../question-genertor/Question";
 
 function GameBoard({ hasMoreQuestions, onAskNextQuestion, onQuestionAnswered, onEndGame }) {
     const { nextQuestion, askNextQuestion } = useNextQuestion(onAskNextQuestion)
-    const [ userAnswer, setUserAnswer ] = useState('')
-    const [ answerState, setAnswerState ] = useState(AnswerState.NONE)
+    const { userAnswer, answerState, clearUserAnswer, updateUserAnswer, checkAnswer } = useUserAnswer(nextQuestion, onQuestionAnswered)
 
     const handleNextQuestion = () => {
         clearUserAnswer()
-        resetAnswerState()
         askNextQuestion()
-    }
-
-    const handleClearAnswer = () => {
-        clearUserAnswer()
-    }
-
-    const clearUserAnswer = () => {
-        setUserAnswer('')
-    }
-
-    const resetAnswerState = () => {
-        setAnswerState(AnswerState.NONE)
-    }
-
-    const handleQuestionAnswered = (userAnswer, answerState) => {
-        onQuestionAnswered(nextQuestion, userAnswer, answerState)
-        setAnswerState(answerState)
-    }
-
-    const handlerEnterAnswer = (answer) => {
-        setUserAnswer(answer)
     }
 
     switch (answerState) {
@@ -45,11 +22,10 @@ function GameBoard({ hasMoreQuestions, onAskNextQuestion, onQuestionAnswered, on
                     <QuestionPresenter question={nextQuestion} />
                     <AnswerBox answer={userAnswer} />
                     <AnswerPad
-                        actualAnswer={nextQuestion.answer}
                         userAnswer={userAnswer}
-                        onEnterAnswer={handlerEnterAnswer}
-                        onQuestionAnswered={handleQuestionAnswered}
-                        onClearAnswer={handleClearAnswer}
+                        onEnterAnswer={updateUserAnswer}
+                        onCheckAnswer={checkAnswer}
+                        onClearAnswer={clearUserAnswer}
                     />
                 </>
             )
@@ -84,6 +60,35 @@ function useNextQuestion(generateQuestion) {
     return {
         nextQuestion,
         askNextQuestion,
+    }
+}
+
+function useUserAnswer(nextQuestion, onQuestionAnswered) {
+    const [ userAnswer, setUserAnswer ] = useState('')
+    const [ answerState, setAnswerState ] = useState(AnswerState.NONE)
+
+    const clearUserAnswer = () => {
+        setUserAnswer('')
+        setAnswerState(AnswerState.NONE)
+    }
+
+    const updateUserAnswer = (answer) => {
+        setUserAnswer(answer)
+    }
+
+    const checkAnswer = () => {
+        let newAnswerState = nextQuestion.answer === parseInt(userAnswer) ? AnswerState.CORRECT : AnswerState.WRONG
+
+        onQuestionAnswered(nextQuestion, userAnswer, newAnswerState)
+        setAnswerState(newAnswerState)
+    }
+
+    return {
+        userAnswer,
+        answerState,
+        clearUserAnswer,
+        updateUserAnswer,
+        checkAnswer
     }
 }
 

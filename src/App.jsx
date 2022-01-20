@@ -1,8 +1,9 @@
 import React from 'react';
 import {styled} from "@mui/material";
-import RotateBodyBackgroundColor from "./pages/game-page/body-background/RotateBodyBackgroundColor";
+import RotateBodyBackgroundColor from "./pages/game-page/body-background/useRandomBodyBackgroundColor";
 import { getRandomColor } from "./utils/colorUtils";
 import GamePage from './pages/game-page/GamePage'
+import useRandomBodyBackgroundColor from "./pages/game-page/body-background/useRandomBodyBackgroundColor";
 
 const GridContainer = styled('div')({
     display: 'grid',
@@ -21,16 +22,17 @@ const Content = styled('div')({
     textAlign: 'center',
 })
 
-const App = () => (
-    <>
-        <RotateBodyBackgroundColor interval={2000} onNextColor={getRandomColor} />
+const App = () => {
+    useRandomBodyBackgroundColor(2000)
+
+    return (
         <GridContainer>
             <Title>Super Calculating</Title>
             <Content>
-                <GamePage defaultNumberOfQuestions={10} startupCountDown={['Start', '5', '4', '3', '2', '1', 'GO!']} />
+                <GamePage defaultNumberOfQuestions={10} startupCountDown={['Start', '5', '4', '3', '2', '1', 'GO!']}/>
             </Content>
         </GridContainer>
-    </>
-)
+    )
+}
 
 export default App;

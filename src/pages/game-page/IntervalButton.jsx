@@ -1,6 +1,5 @@
 import {useEffect, useReducer, useRef} from "react";
 import Button from '@mui/material/Button'
-import {getRandomColor} from "../../utils/colorUtils";
 import RandomColorH2 from "./RandomColorH2";
 
 const IntervalState = {
@@ -9,6 +8,16 @@ const IntervalState = {
     incrementing: 'incrementing',
     isIncrementing: (intervalState) => intervalState === IntervalState.incrementing,
     isStopped: (intervalState) => intervalState === IntervalState.stopped,
+}
+
+function IntervalButton({ text, onCountDownStarted, onCountDownCompleted }) {
+    const { value, isCountingDown, startCountdown } = useCountdown(text, onCountDownStarted, onCountDownCompleted)
+
+    if(isCountingDown) {
+        return <RandomColorH2>{value}</RandomColorH2>
+    }
+
+    return <Button variant="outlined" color="secondary" onClick={startCountdown}>{value}</Button>
 }
 
 const reducer = (state, action) => {
@@ -24,7 +33,7 @@ const initialState = {
     count: 0
 }
 
-function IntervalButton({ text, onCountDownStarted, onCountDownCompleted }) {
+function useCountdown(text, onCountDownStarted, onCountDownCompleted) {
     const [{ count, intervalState }, dispatch] = useReducer(reducer, initialState)
     const intervalRef = useRef(0)
 
@@ -36,15 +45,9 @@ function IntervalButton({ text, onCountDownStarted, onCountDownCompleted }) {
 
     useEffect(() => {
         return () => {
-            stopInterval()
+            stopCountdown()
         }
     }, [])
-
-    const onButtonClick = () => {
-        onCountDownStarted()
-
-        dispatch({ type: IntervalState.starting })
-    }
 
     const incrementInterval = () => {
         return setTimeout(() => {
@@ -60,16 +63,22 @@ function IntervalButton({ text, onCountDownStarted, onCountDownCompleted }) {
         }, 1000)
     }
 
-    const stopInterval = () => {
+    const stopCountdown = () => {
         dispatch({ type: IntervalState.stopped })
         clearTimeout(intervalRef.current)
     }
 
-    if(IntervalState.isIncrementing(intervalState)) {
-        return <RandomColorH2>{text[count]}</RandomColorH2>
+    const startCountdown = () => {
+        onCountDownStarted()
+
+        dispatch({ type: IntervalState.starting })
     }
 
-    return <Button variant="outlined" color="secondary" onClick={onButtonClick}>{text[count]}</Button>
+    return {
+        value: text[count],
+        isCountingDown: IntervalState.isIncrementing(intervalState),
+        startCountdown,
+    }
 }
 
 export default IntervalButton

@@ -11,23 +11,32 @@ export const AnswerState = {
     WRONG: 'wrong'
 }
 
-function AnswerPad({ actualAnswer, userAnswer, onEnterAnswer, onQuestionAnswered, onClearAnswer }) {
+function AnswerPad({ userAnswer, onEnterAnswer, onCheckAnswer, onClearAnswer }) {
+    const { checkAnswer, keyPadKeyPressed, hasErrors }  = useAnswerPadController(userAnswer, onEnterAnswer, onCheckAnswer)
+
+    return (
+        <AnswerPadLayout
+            answerInput={<NumberKeyPad onKeyPressed={keyPadKeyPressed} />}
+            answerButton={<CheckAnswerButton onClick={checkAnswer} />}
+            clearButton={<ClearButton onClick={onClearAnswer} />}
+            errorMessage={<MissingAnswerError show={hasErrors} />}
+        />
+    )
+}
+
+function useAnswerPadController(userAnswer, onEnterAnswer, onCheckAnswer) {
     const [shouldShowValidationErrors, setShouldShowValidationErrors] = useState(false)
 
-    const checkAnswerHandler = () => {
+    const checkAnswer = () => {
         if (userAnswer === '') {
             setShouldShowValidationErrors(true)
             return
         }
 
-        if (actualAnswer === parseInt(userAnswer)) {
-            onQuestionAnswered(userAnswer, AnswerState.CORRECT)
-        } else {
-            onQuestionAnswered(userAnswer, AnswerState.WRONG)
-        }
+        onCheckAnswer()
     }
 
-    const handleKeyPadKeyPress = (key) => {
+    const keyPadKeyPressed = (key) => {
         if (shouldShowValidationErrors) {
             setShouldShowValidationErrors(false)
         }
@@ -35,14 +44,11 @@ function AnswerPad({ actualAnswer, userAnswer, onEnterAnswer, onQuestionAnswered
         onEnterAnswer(userAnswer + key)
     }
 
-    return (
-        <AnswerPadLayout
-            answerInput={<NumberKeyPad onKeyPressed={handleKeyPadKeyPress} />}
-            answerButton={<CheckAnswerButton onClick={checkAnswerHandler} />}
-            clearButton={<ClearButton onClick={onClearAnswer} />}
-            errorMessage={<MissingAnswerError show={shouldShowValidationErrors} />}
-        />
-    )
+    return {
+        checkAnswer,
+        keyPadKeyPressed,
+        hasErrors: shouldShowValidationErrors
+    }
 }
 
 export default AnswerPad
