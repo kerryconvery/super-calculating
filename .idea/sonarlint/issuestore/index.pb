@@ -11,8 +11,6 @@ H
 webpack.common.simple.js,0/9/091bc8b87da0cfb92d8a4f1fe4cab512ff9aceed
 F
 src/utils/timeUtils.js,7/d/7d2df45501d646b7c2d6790bcd264badf2a35192
-A
-webpack.common.js,d/0/d06806c1cc82bd1781be984b85882961da77e838
 =
 src/index.jsx,8/0/803a01c593b21a1ddcd457e52bebd714950f99f4
 :
@@ -26,8 +24,6 @@ F
 src/utils/testUtils.js,d/3/d3ba97c6671d07ffdd63dbff746f9e8e231157e2
 x
 Hsrc/pages/game-page/game-staticstics/useGameStatisticsCollector.test.jsx,6/9/6960b386a9c1d2e44dcde44d99e206b0bc452080
-<
-package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
 u
 Esrc/pages/game-page/question-count-selector/QuestionSelector.test.jsx,6/5/65f479a8ef3924f502db14d4e5ba9647c6dc4fa1
 h
@@ -36,8 +32,6 @@ f
 6src/question-genertor/twoDigitQuestionStrategy.test.ts,2/3/23522f0b9c57d7fa633c3a0d85efa675156df378
 a
 1src/question-genertor/twoDigitQuestionStrategy.js,e/f/efe65078b0db63aaf9201f85910d96ff1d3e557a
-Z
-*src/question-genertor/questionGenerator.js,1/4/14f0df8707948a58e1083449aa0db02a0fc53457
 Q
 !src/question-genertor/Question.js,1/3/13bfa712cb2e1efef109f559d1d5d81ebdd48ac4
 G
