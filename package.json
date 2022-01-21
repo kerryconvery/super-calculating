@@ -29,6 +29,7 @@
 		"react-dom": "^17.0.1",
 		"react-router-dom": "^5.2.0",
 		"react-select-event": "^5.3.0",
+		"simple-eval": "^1.0.0",
 		"styled-components": "^5.3.3"
 	},
 	"devDependencies": {

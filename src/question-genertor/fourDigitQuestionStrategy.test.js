@@ -22,9 +22,13 @@ describe('when generating a question', () => {
         })
     })
 
-    it('retries until the answer is not negative', () => {
+    it.each([
+        {question: '12 - 12 - 1', answer: -1},
+        {question: '7 - 7 - 2 + 5', answer: 3}
+    ])
+        ('retries until the partial or full evaluation does not result in a negative value', (negativeQuestion) => {
         const questions = [
-            {question: '2 - 12 - 1', answer: -9},
+            negativeQuestion,
             {question: '7 - 2 + 1', answer: 6}
         ]
         let iterationCount = 0
