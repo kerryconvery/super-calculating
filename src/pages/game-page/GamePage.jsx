@@ -4,7 +4,7 @@ import GamePresenter from "./GamePresenter";
 import ResultsBoard from "./ResultsBoard";
 import InGameStatistics from "./game-staticstics/InGameStatistics";
 import useGameController from "./game-controller/GameController";
-import GameStarter from "./GameStarter";
+import GameStarter from "./game-starter/GameStarter";
 
 function GamePage({ defaultNumberOfQuestions, startupCountDown }) {
     const [numberOfQuestions, setNumberOfQuestions] = useState(defaultNumberOfQuestions)
