@@ -13,27 +13,13 @@ const GameContainer = styled('div')({
     height: '100%'
 })
 
-const QuestionSelector = styled('div')({
-    display: 'inline',
-})
-
-const StartButton = styled('div')({
-    display: 'inline',
-    marginLeft: '1rem'
-})
-
-function GamePresenter({ questionSelector, gameState, inGameStats, gameBoard, startButton, scoreBoard }) {
+function GamePresenter({ gameState, gameStarter, inGameStats, gameBoard, scoreBoard }) {
     const gameStateToView = () => {
         switch (gameState) {
             case GameState.stopped:
                 return (
                     <VerticalCenter>
-                        <QuestionSelector>
-                            {questionSelector}
-                        </QuestionSelector>
-                        <StartButton>
-                            {startButton}
-                        </StartButton>
+                        {gameStarter}
                     </VerticalCenter>
                 )
             case GameState.started:

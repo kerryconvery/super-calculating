@@ -5,7 +5,7 @@ import useStopWatchTimer from "../timers/useStopWatchTimer";
 import useAnswerRecorder from "../game-staticstics/useAnswerRecorder";
 import { GameState } from "./types";
 
-function GameController({ children, numberOfQuestions }) {
+function gameController(numberOfQuestions) {
     const { elapsedSeconds, resumeTimer, pauseTimer } = useStopWatchTimer()
     const [ gameState, setGameState ] = useState(GameState.stopped)
     const { gameStatistics, onAskQuestion, onQuestionAnswered } = useGameStatisticsCollector(numberOfQuestions)
@@ -37,19 +37,19 @@ function GameController({ children, numberOfQuestions }) {
         unmountRef.current = true
     }
 
-    const handleAskNextQuestion = () => {
+    const askNextQuestion = () => {
         resumeTimer()
         onAskQuestion()
         return generateQuestion()
     }
 
-    const handleQuestionAnswered = (question, userAnswer, answerState) => {
+    const questionAnswered = (question, userAnswer, answerState) => {
         pauseTimer()
         recordAnswer(question, userAnswer, answerState)
         onQuestionAnswered(answerState)
     }
 
-    return children({
+    return {
         gameState,
         elapsedSeconds,
         gameStatistics,
@@ -58,11 +58,11 @@ function GameController({ children, numberOfQuestions }) {
         numberOfQuestionsAsked: gameStatistics.numberOfQuestionsAsked,
         numberOfQuestionsAnsweredCorrectly: gameStatistics.numberOfQuestionsAnsweredCorrectly,
         numberOfQuestionsAnsweredIncorrectly: gameStatistics.numberOfQuestionsAnsweredIncorrectly,
-        onStartGame: startGame,
-        onEndGame: endGame,
-        onAskNextQuestion: handleAskNextQuestion,
-        onQuestionAnswered: handleQuestionAnswered,
-    })
+        startGame,
+        endGame,
+        askNextQuestion,
+        questionAnswered,
+    }
 }
 
-export default GameController
+export default gameController

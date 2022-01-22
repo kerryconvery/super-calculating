@@ -18,8 +18,6 @@ F
 index.html,f/6/f6013a00b362253c64368d6eebc50ea2131754e2
 @
 src/App.test.jsx,2/b/2b322568461919c69ce71c5022f651abc0bedc7a
-\
-,src/pages/game-page/game-controller/types.js,a/8/a85aa86cefa6ba6579c4be2e3ab1e234041d11ef
 F
 src/utils/testUtils.js,d/3/d3ba97c6671d07ffdd63dbff746f9e8e231157e2
 x
@@ -50,16 +48,8 @@ t
 Dsrc/pages/game-page/body-background/useRandomBodyBackground.test.jsx,c/a/ca6a576b1f20b8253a3d204a47b634ebd376a7a8
 s
 Csrc/pages/game-page/game-staticstics/useGameStatisticsCollector.jsx,9/f/9f29b6384a343550ed34cb93bb615ac3a040b4c9
-V
-&src/pages/game-page/IntervalButton.jsx,6/e/6e8593734ffb7c1ef08cb790b55d129be688f1d2
-U
-%src/pages/game-page/GamePresenter.jsx,6/3/635cc41350dfa02947b3605283fd49b57f7bdfb4
-u
-Esrc/pages/game-page/question-count-selector/QuestionCountSelector.jsx,0/1/01f53fdd4f75f37ce20aadcf1256859b1317ba7c
 i
 9src/pages/game-page/game-staticstics/InGameStatistics.jsx,f/d/fd573e9711a75643906252fe81e74a580572553d
-f
-6src/pages/game-page/game-controller/GameController.jsx,2/a/2a1a69f3a75d3b5c0a46dd93d0c42e24a08b6651
 d
 4src/pages/game-page/game-board/QuestionPresenter.jsx,c/b/cbc6891de96538db7efa76ec7808eae57640c5d9
 ]
