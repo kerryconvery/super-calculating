@@ -18,6 +18,29 @@ const Title = styled('h3')({
     marginTop: '2rem'
 })
 
+const ResultSummaryColumns = [
+    {
+        title: 'Time taken',
+        getDisplayValue: (results) => formatElapsedSeconds(results.elapsedTime)
+    },
+    {
+        title: 'Total questions',
+        getDisplayValue: (results) => results.totalNumberOfQuestions
+    },
+    {
+        title: 'Answered correctly',
+        getDisplayValue: (results) => results.numberOfQuestionsAnsweredCorrectly
+    },
+    {
+        title: 'Answered incorrectly',
+        getDisplayValue: (results) => results.numberOfQuestionsAnsweredIncorrectly
+    },
+    {
+        title: 'Percentage correct',
+        getDisplayValue: (results) => `${getPercentageCorrect(results)}%`
+    },
+]
+
 function ResultsBoard(props) {
     const {
         gameResults,
@@ -49,13 +72,14 @@ function isEmptyObject(value) {
 function ResultSummaryWithoutLastGame({ gameResults }){
     return (
         <Table size='small' sx={{ marginTop: '2rem' }}>
-            <TableBody>
-                <ResultItem name='Time taken' value={formatElapsedSeconds(gameResults.elapsedTime)} />
-                <ResultItem name='Questions asked' value={gameResults.totalNumberOfQuestions} />
-                <ResultItem name='Questions answered correctly' value={gameResults.numberOfQuestionsAnsweredCorrectly} />
-                <ResultItem name='Questions answered incorrectly' value={gameResults.numberOfQuestionsAnsweredIncorrectly} />
-                <ResultItem name='Percentage answered correctly' value={`${getPercentageCorrect(gameResults)}%`} />
-            </TableBody>
+            <ResultSummaryTableBody>
+                {column => (
+                    <>
+                        <TableCell align='left'>{column.title}</TableCell>
+                        <TableCell align='right'>{column.getDisplayValue(gameResults)}</TableCell>
+                    </>
+                )}
+            </ResultSummaryTableBody>
         </Table>
     )
 }
@@ -66,38 +90,34 @@ function ResultSummaryIncludingLastGame({ gameResults, lastGameResults }) {
             <TableHead>
                 <GreyTableRow>
                     <TableCell></TableCell>
-                    <TableCell align='center'>Current game</TableCell>
-                    <TableCell align='center'>Previous game</TableCell>
+                    <TableCell align='center'>Current</TableCell>
+                    <TableCell align='center'>Previous</TableCell>
                 </GreyTableRow>
             </TableHead>
-            <TableBody>
-                <GreyTableRow>
-                    <TableCell align='left'>Time taken</TableCell>
-                    <TableCell align='right'>{formatElapsedSeconds(gameResults.elapsedTime)}</TableCell>
-                    <TableCell align='right'>{formatElapsedSeconds(lastGameResults.elapsedTime)}</TableCell>
-                </GreyTableRow>
-                <GreyTableRow>
-                    <TableCell align='left'>Questions asked</TableCell>
-                    <TableCell align='right'>{gameResults.totalNumberOfQuestions}</TableCell>
-                    <TableCell align='right'>{lastGameResults.totalNumberOfQuestions}</TableCell>
-                </GreyTableRow>
-                <GreyTableRow>
-                    <TableCell align='left'>Questions answered correctly</TableCell>
-                    <TableCell align='right'>{gameResults.numberOfQuestionsAnsweredCorrectly}</TableCell>
-                    <TableCell align='right'>{lastGameResults.numberOfQuestionsAnsweredCorrectly}</TableCell>
-                </GreyTableRow>
-                <GreyTableRow>
-                    <TableCell align='left'>Questions answered incorrectly</TableCell>
-                    <TableCell align='right'>{gameResults.numberOfQuestionsAnsweredIncorrectly}</TableCell>
-                    <TableCell align='right'>{lastGameResults.numberOfQuestionsAnsweredIncorrectly}</TableCell>
-                </GreyTableRow>
-                <GreyTableRow>
-                    <TableCell align='left'>Percentage answered correctly</TableCell>
-                    <TableCell align='right'>{`${getPercentageCorrect(gameResults)}%`}</TableCell>
-                    <TableCell align='right'>{`${getPercentageCorrect(lastGameResults)}%`}</TableCell>
-                </GreyTableRow>
-            </TableBody>
+            <ResultSummaryTableBody>
+                {column => (
+                    <>
+                        <TableCell align='left'>{column.title}</TableCell>
+                        <TableCell align='right'>{column.getDisplayValue(gameResults)}</TableCell>
+                        <TableCell align='right'>{column.getDisplayValue(lastGameResults)}</TableCell>
+                    </>
+                )}
+            </ResultSummaryTableBody>
         </Table>
+    )
+}
+
+function ResultSummaryTableBody({ children }) {
+    return (
+        <TableBody>
+            {
+                ResultSummaryColumns.map((column, index) => (
+                    <GreyTableRow key={index}>
+                        {children(column)}
+                    </GreyTableRow>
+                ))
+            }
+        </TableBody>
     )
 }
 

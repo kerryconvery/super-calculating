@@ -29,13 +29,13 @@ exports[`Game page after the game has ended displays the score board when all th
             class="MuiTableCell-root MuiTableCell-head MuiTableCell-alignCenter MuiTableCell-sizeSmall css-12q85cb-MuiTableCell-root"
             scope="col"
           >
-            Current game
+            Current
           </th>
           <th
             class="MuiTableCell-root MuiTableCell-head MuiTableCell-alignCenter MuiTableCell-sizeSmall css-12q85cb-MuiTableCell-root"
             scope="col"
           >
-            Previous game
+            Previous
           </th>
         </tr>
       </thead>
@@ -67,7 +67,7 @@ exports[`Game page after the game has ended displays the score board when all th
           <td
             class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeSmall css-dsuxgy-MuiTableCell-root"
           >
-            Questions asked
+            Total questions
           </td>
           <td
             class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
@@ -86,7 +86,7 @@ exports[`Game page after the game has ended displays the score board when all th
           <td
             class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeSmall css-dsuxgy-MuiTableCell-root"
           >
-            Questions answered correctly
+            Answered correctly
           </td>
           <td
             class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
@@ -105,7 +105,7 @@ exports[`Game page after the game has ended displays the score board when all th
           <td
             class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeSmall css-dsuxgy-MuiTableCell-root"
           >
-            Questions answered incorrectly
+            Answered incorrectly
           </td>
           <td
             class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
@@ -124,7 +124,7 @@ exports[`Game page after the game has ended displays the score board when all th
           <td
             class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeSmall css-dsuxgy-MuiTableCell-root"
           >
-            Percentage answered correctly
+            Percentage correct
           </td>
           <td
             class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"

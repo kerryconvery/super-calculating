@@ -25,6 +25,7 @@ function GamePresenter({ gameState, gameStarter, inGameStats, gameBoard, scoreBo
             case GameState.started:
                 return (
                     <VerticalCenter>
+                        <audio src='assets/Meydan-Fae.mp3' autoPlay />
                         {inGameStats}
                         {gameBoard}
                     </VerticalCenter>
