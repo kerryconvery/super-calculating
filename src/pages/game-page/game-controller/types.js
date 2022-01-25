@@ -1,5 +1,5 @@
 export const GameState = {
-    stopped: 'stopped',
+    notStarted: 'notStarted',
     started: 'started',
     completed: 'completed'
 }

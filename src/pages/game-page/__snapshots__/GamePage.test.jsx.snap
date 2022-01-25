@@ -15,6 +15,30 @@ exports[`Game page after the game has ended displays the score board when all th
     <table
       class="MuiTable-root css-sumxgb-MuiTable-root"
     >
+      <thead
+        class="MuiTableHead-root css-15wwp11-MuiTableHead-root"
+      >
+        <tr
+          class="MuiTableRow-root MuiTableRow-head css-1y5vm7s-MuiTableRow-root"
+        >
+          <th
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeSmall css-1howxi1-MuiTableCell-root"
+            scope="col"
+          />
+          <th
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-alignCenter MuiTableCell-sizeSmall css-12q85cb-MuiTableCell-root"
+            scope="col"
+          >
+            Current game
+          </th>
+          <th
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-alignCenter MuiTableCell-sizeSmall css-12q85cb-MuiTableCell-root"
+            scope="col"
+          >
+            Previous game
+          </th>
+        </tr>
+      </thead>
       <tbody
         class="MuiTableBody-root css-apqrd9-MuiTableBody-root"
       >
@@ -31,6 +55,11 @@ exports[`Game page after the game has ended displays the score board when all th
           >
             00:10
           </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
+          >
+            02:00
+          </td>
         </tr>
         <tr
           class="MuiTableRow-root css-1y5vm7s-MuiTableRow-root"
@@ -44,6 +73,11 @@ exports[`Game page after the game has ended displays the score board when all th
             class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
           >
             3
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
+          >
+            10
           </td>
         </tr>
         <tr
@@ -59,6 +93,11 @@ exports[`Game page after the game has ended displays the score board when all th
           >
             1
           </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
+          >
+            2
+          </td>
         </tr>
         <tr
           class="MuiTableRow-root css-1y5vm7s-MuiTableRow-root"
@@ -73,6 +112,11 @@ exports[`Game page after the game has ended displays the score board when all th
           >
             2
           </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
+          >
+            8
+          </td>
         </tr>
         <tr
           class="MuiTableRow-root css-1y5vm7s-MuiTableRow-root"
@@ -86,6 +130,11 @@ exports[`Game page after the game has ended displays the score board when all th
             class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
           >
             33.33333333333333%
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
+          >
+            20%
           </td>
         </tr>
       </tbody>

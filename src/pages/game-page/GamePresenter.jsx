@@ -16,7 +16,7 @@ const GameContainer = styled('div')({
 function GamePresenter({ gameState, gameStarter, inGameStats, gameBoard, scoreBoard }) {
     const gameStateToView = () => {
         switch (gameState) {
-            case GameState.stopped:
+            case GameState.notStarted:
                 return (
                     <VerticalCenter>
                         {gameStarter}

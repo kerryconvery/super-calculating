@@ -13,7 +13,7 @@ function useStopWatchTimer() {
 
     useEffect(() => {
         return () => {
-            startTimer()
+            stopTimer()
         }
     }, [])
 
@@ -33,6 +33,7 @@ function useStopWatchTimer() {
     }
 
     return {
+        isRunning: running,
         elapsedSeconds: numberOfElapsedSeconds,
         pauseTimer: stopTimer,
         resumeTimer: startTimer,

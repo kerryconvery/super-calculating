@@ -1,5 +1,6 @@
 import {act, renderHook} from "@testing-library/react-hooks";
 import useStopWatchTimer from './useStopWatchTimer'
+import {waitFor} from "@testing-library/react";
 
 jest.useFakeTimers()
 

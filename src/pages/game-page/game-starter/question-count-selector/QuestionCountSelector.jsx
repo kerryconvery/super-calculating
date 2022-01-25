@@ -19,6 +19,7 @@ function QuestionCountSelector({ hide, onChange, defaultNumberOfQuestions }) {
             <InputLabel id='question-selector'>{`Number of questions: ${numberOfQuestions}`}</InputLabel>
             <Slider
                 aria-labelledby="question-selector"
+                min={1}
                 defaultValue={defaultNumberOfQuestions}
                 valueLabelDisplay="off"
                 onChange={onChangeTheNumberOfQuestions}

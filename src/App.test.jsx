@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import {render, screen, waitFor} from '@testing-library/react'
 import App from './App';
 
 jest.mock('./utils/colorUtils', () => ({
@@ -6,21 +6,30 @@ jest.mock('./utils/colorUtils', () => ({
 }))
 
 describe('When the app is running', () => {
-    it('displays the title', () => {
-        render(<App />)
+    beforeAll(() => {
+        global.Storage.prototype.setItem = jest.fn()
+        global.Storage.prototype.getItem = jest.fn()
+    })
 
+    beforeEach(async () => {
+        await renderApp()
+    })
+
+    it('displays the title', async () => {
         expect(screen.getByText('Super Calculating')).toBeInTheDocument()
     })
 
-    it('display the game page', () => {
-        render(<App />)
-
+    it('display the game page', async () => {
         expect(screen.getByText('Start')).toBeInTheDocument()
     })
 
-    it('sets the background color to a random color', () => {
-        render(<App />)
-
+    it('sets the background color to a random color', async () => {
         expect(document.body.style.backgroundColor).toEqual('blue')
     })
+
+    function renderApp() {
+        return waitFor(() => {
+            render(<App/>)
+        })
+    }
 })

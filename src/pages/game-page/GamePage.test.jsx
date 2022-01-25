@@ -4,6 +4,21 @@ import * as QuestionGenerator from '../../question-genertor/questionGenerator'
 import {answerTheQuestionWith, clickTheEndGameButton, clickTheNextButton} from "../../utils/testUtils";
 import GamePage from './GamePage'
 import Question from "../../question-genertor/Question";
+import gameStorageService from "./services/gameStorageService";
+
+const lastGameResults = {
+    elapsedTime: 120,
+    totalNumberOfQuestions: 10,
+    numberOfQuestionsAnsweredCorrectly: 2,
+    numberOfQuestionsAnsweredIncorrectly: 8
+}
+
+jest.mock('./services/gameStorageService', () => {
+    return {
+        addGameResults: jest.fn().mockResolvedValue(undefined),
+        getLastGameResults: jest.fn().mockResolvedValue(lastGameResults)
+    };
+});
 
 jest.useFakeTimers()
 
@@ -26,13 +41,13 @@ jest.mock('@mui/material/Slider', () => (props) => {
 describe('Game page', () => {
     describe('before starting the game', () => {
         it('Sets a default number of questions', async () => {
-            renderGamePage()
+            await renderGamePage()
 
             expect(screen.getByLabelText(/Number of questions:/).value).toEqual('3')
         })
 
         it('allows the player to select the number of questions from a predefined list', async () => {
-            renderGamePage()
+            await renderGamePage()
 
             fireEvent.change( screen.getByLabelText(/Number of questions:/), { target: { value: 2 } })
 
@@ -44,7 +59,7 @@ describe('Game page', () => {
         })
 
         it('asks only the selected number of questions before ending the game', async () => {
-            renderGamePage()
+            await renderGamePage()
 
             fireEvent.change( screen.getByLabelText(/Number of questions:/), { target: { value: 2 } })
 
@@ -62,7 +77,9 @@ describe('Game page', () => {
     })
 
     describe('Playing the game', () => {
-        beforeEach(startTheGame)
+        beforeEach(async () => {
+            await startTheGame()
+        })
 
         describe('when the start button is pressed', () => {
             it('hides the question selector', () => {
@@ -143,8 +160,10 @@ describe('Game page', () => {
     })
 
     describe('after the game has ended', () => {
-        it('displays the score board when all the questions have been answered', async () => {
-            const { container } = await startTheGame()
+        let container
+
+        beforeEach(async () => {
+            const component = await startTheGame()
 
             await waitForQuestion()
 
@@ -159,8 +178,24 @@ describe('Game page', () => {
             await clickTheNextButton()
 
             await answerTheQuestionWith('10')
+
             await clickTheEndGameButton()
 
+            container = component.container
+        })
+
+        it('stores the game results for later retrieval', async () => {
+            const addGameResults = jest.spyOn(gameStorageService, 'addGameResults')
+
+            expect(addGameResults).toHaveBeenCalledWith({
+                elapsedTime: expect.anything(),
+                totalNumberOfQuestions: expect.anything(),
+                numberOfQuestionsAnsweredCorrectly: expect.anything(),
+                numberOfQuestionsAnsweredIncorrectly: expect.anything(),
+            })
+        })
+
+        it('displays the score board when all the questions have been answered', async () => {
             expect(container.firstChild).toMatchSnapshot()
         })
     })
@@ -178,7 +213,7 @@ function renderGamePage() {
     jest.spyOn(QuestionGenerator, 'generateQuestion')
         .mockReturnValue(Question.create({ question: '5 + 8', answer: 13 }))
 
-    return render(<GamePage defaultNumberOfQuestions={3} startupCountDown={['Start', '1', 'GO!']} />)
+    return waitFor(() => render(<GamePage defaultNumberOfQuestions={3} startupCountDown={['Start', '1', 'GO!']} />))
 }
 
 function pressTheStartButton() {
