@@ -1,6 +1,8 @@
 import {useEffect, useReducer, useRef} from "react";
 import Button from '@mui/material/Button'
 import RandomColorH2 from "../RandomColorH2";
+import Audio from "../Audio";
+import useSound from "use-sound";
 
 const IntervalState = {
     stopped: 'stopped',
@@ -12,6 +14,8 @@ const IntervalState = {
 
 function IntervalButton({ text, onCountDownStarted, onCountDownCompleted }) {
     const { value, isCountingDown, startCountdown } = useCountdown(text, onCountDownStarted, onCountDownCompleted)
+
+    useCountdownSound(isCountingDown, value)
 
     if(isCountingDown) {
         return <RandomColorH2>{value}</RandomColorH2>
@@ -31,6 +35,16 @@ const reducer = (state, action) => {
 const initialState = {
     intervalState: IntervalState.Stopped,
     count: 0
+}
+
+function useCountdownSound(isCountingDown, countdownValue) {
+    const [play] = useSound('assets/simple-beep.wav')
+
+    useEffect(() => {
+        if(isCountingDown) {
+            play()
+        }
+    }, [countdownValue])
 }
 
 function useCountdown(text, onCountDownStarted, onCountDownCompleted) {

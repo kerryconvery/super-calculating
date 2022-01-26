@@ -82,8 +82,6 @@ e
 5src/pages/game-page/timers/useStopWatchTimer.test.jsx,d/7/d72bece9fbc9d5840f0e7d749a020e40de28279f
 p
 @src/pages/game-page/game-board/buttons/NextQuestionOfEndGame.jsx,e/c/ec9c59408572bb3912a624824189742eda613bab
-c
-3src/pages/game-page/game-starter/IntervalButton.jsx,2/8/286cc36d8d290f73d91c837ad727f223a2541826
 s
 Csrc/pages/game-page/game-staticstics/useGameStatisticsCollector.jsx,9/f/9f29b6384a343550ed34cb93bb615ac3a040b4c9
 i
