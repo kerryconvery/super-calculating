@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"
+const {useEffect} = require("react");
 
 function Audio({ id, src, volume }) {
     useEffect(() => {

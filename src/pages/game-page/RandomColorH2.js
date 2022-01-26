@@ -1,4 +1,3 @@
-import React from 'react';
 import {getRandomColor} from "../../utils/colorUtils";
 
 function RandomColorH2({ children }) {

@@ -1,5 +1,7 @@
 import React from 'react';
 import {styled} from "@mui/material";
+import RotateBodyBackgroundColor from "./pages/game-page/body-background/useRandomBodyBackgroundColor";
+import { getRandomColor } from "./utils/colorUtils";
 import GamePage from './pages/game-page/GamePage'
 import useRandomBodyBackgroundColor from "./pages/game-page/body-background/useRandomBodyBackgroundColor";
 
