@@ -38,7 +38,7 @@ const initialState = {
 }
 
 function useCountdownSound(isCountingDown, countdownValue) {
-    const [play] = useSound('/simple-beep.wav')
+    const [play] = useSound('simple-beep.wav')
 
     useEffect(() => {
         if(isCountingDown) {

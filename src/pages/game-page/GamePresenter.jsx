@@ -27,7 +27,7 @@ function GamePresenter({ gameState, gameStarter, inGameStats, gameBoard, scoreBo
             case GameState.started:
                 return (
                     <VerticalCenter>
-                        <Audio id='music' src='/Positive-Hip-Hop.mp3' volume={0.2} />
+                        <Audio id='music' src='Positive-Hip-Hop.mp3' volume={0.2} />
                         {inGameStats}
                         {gameBoard}
                     </VerticalCenter>
