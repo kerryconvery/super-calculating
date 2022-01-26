@@ -90,8 +90,8 @@ function ResultSummaryIncludingLastGame({ gameResults, lastGameResults }) {
             <TableHead>
                 <GreyTableRow>
                     <TableCell></TableCell>
-                    <TableCell align='center'>Current</TableCell>
-                    <TableCell align='center'>Previous</TableCell>
+                    <TableCell align='right'>Current</TableCell>
+                    <TableCell align='right'>Previous</TableCell>
                 </GreyTableRow>
             </TableHead>
             <ResultSummaryTableBody>
