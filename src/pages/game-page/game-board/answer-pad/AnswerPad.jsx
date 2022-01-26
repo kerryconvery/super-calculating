@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import AnswerPadLayout from "./AnswerPadLayout";
 import CheckAnswerButton from "../buttons/CheckAnswerButton";
 import ClearButton from "../buttons/ClearButton";

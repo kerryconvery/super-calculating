@@ -1,3 +1,4 @@
+import React from 'react';
 import ValidationError from "./ValidationError";
 
 function MissingAnswerError({ show }) {
