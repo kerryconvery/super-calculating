@@ -1,4 +1,3 @@
-import React from 'react';
 import { styled } from '@mui/material/styles'
 import { GameState } from "./game-controller/types";
 import Audio from "./Audio";
@@ -27,7 +26,7 @@ function GamePresenter({ gameState, gameStarter, inGameStats, gameBoard, scoreBo
             case GameState.started:
                 return (
                     <VerticalCenter>
-                        <Audio id='music' src='/Positive-Hip-Hop.mp3' volume={0.2} />
+                        <Audio id='music' src='assets/Positive-Hip-Hop.mp3' volume={0.2} />
                         {inGameStats}
                         {gameBoard}
                     </VerticalCenter>

@@ -1,4 +1,3 @@
-import React from 'react';
 import { styled } from '@mui/material/styles'
 import NextButton from "./NextButton";
 import EndGameButton from "./EndGameButton";

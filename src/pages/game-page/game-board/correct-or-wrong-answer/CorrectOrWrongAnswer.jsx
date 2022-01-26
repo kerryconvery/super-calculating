@@ -1,4 +1,3 @@
-import React from 'react';
 import {AnswerState} from "../answer-pad/AnswerPad";
 import CorrectAnswer from "./CorrectAnswer";
 import WrongAnswer from "./WrongAnswer";
