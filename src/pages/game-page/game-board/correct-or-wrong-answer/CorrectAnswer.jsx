@@ -1,10 +1,11 @@
 import Image from "./Image";
+import Audio from "../../Audio";
 
 function CorrectAnswer() {
     return (
         <>
             <Image src='assets/correct.png' />
-            <audio src='assets/applause3.wav' autoPlay />
+            <Audio src='assets/applause3.wav' />
             <div>Correct!!</div>
         </>
     )

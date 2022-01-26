@@ -1,5 +1,6 @@
 import { styled } from '@mui/material/styles'
 import { GameState } from "./game-controller/types";
+import Audio from "./Audio";
 
 const VerticalCenter = styled('div')({
     position: 'relative',
@@ -25,7 +26,7 @@ function GamePresenter({ gameState, gameStarter, inGameStats, gameBoard, scoreBo
             case GameState.started:
                 return (
                     <VerticalCenter>
-                        <audio src='assets/Positive-Hip-Hop.mp3' autoPlay />
+                        <Audio id='music' src='assets/Positive-Hip-Hop.mp3' volume={0.2} />
                         {inGameStats}
                         {gameBoard}
                     </VerticalCenter>

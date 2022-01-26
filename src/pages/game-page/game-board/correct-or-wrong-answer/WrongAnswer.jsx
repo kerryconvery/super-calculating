@@ -1,10 +1,11 @@
 import Image from "./Image";
+import Audio from "../../Audio";
 
 function WrongAnswer({ correctAnswer }) {
     return (
         <>
             <Image src='assets/oh-no.png' />
-            <audio src='assets/ohno.wav' autoPlay />
+            <Audio src='assets/ohno.wav' />
             <div>Oh No!!</div>
             <div>{`The correct answer is ${correctAnswer}`}</div>
         </>
