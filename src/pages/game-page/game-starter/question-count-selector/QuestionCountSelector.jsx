@@ -1,6 +1,6 @@
+import React, {useState} from "react";
 import InputLabel from '@mui/material/InputLabel'
 import Slider from '@mui/material/Slider'
-import {useState} from "react";
 
 function QuestionCountSelector({ hide, onChange, defaultNumberOfQuestions }) {
     const [numberOfQuestions, setNumberOfQuestions] = useState(defaultNumberOfQuestions)

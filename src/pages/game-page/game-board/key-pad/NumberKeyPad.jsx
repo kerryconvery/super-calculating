@@ -1,3 +1,4 @@
+import React from 'react';
 import KeyPad from "./KeyPad";
 
 function NumberKeyPad({ onKeyPressed }) {

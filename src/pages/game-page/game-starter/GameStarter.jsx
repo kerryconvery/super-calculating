@@ -1,4 +1,4 @@
-import {useState} from "react";
+import React, {useState} from "react";
 import IntervalButton from "./IntervalButton";
 import QuestionCountSelector from "./question-count-selector/QuestionCountSelector";
 import {styled} from "@mui/material/styles";

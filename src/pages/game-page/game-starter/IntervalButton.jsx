@@ -1,4 +1,4 @@
-import {useEffect, useReducer, useRef} from "react";
+import React, {useEffect, useReducer, useRef} from "react";
 import Button from '@mui/material/Button'
 import RandomColorH2 from "../RandomColorH2";
 import Audio from "../Audio";
@@ -38,7 +38,7 @@ const initialState = {
 }
 
 function useCountdownSound(isCountingDown, countdownValue) {
-    const [play] = useSound('assets/simple-beep.wav')
+    const [play] = useSound('/simple-beep.wav')
 
     useEffect(() => {
         if(isCountingDown) {
