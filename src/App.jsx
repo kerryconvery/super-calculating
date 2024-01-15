@@ -1,7 +1,6 @@
 import React from 'react';
 import {styled} from "@mui/material";
 import GamePage from './pages/game-page/GamePage'
-import useRandomBodyBackgroundColor from "./pages/game-page/body-background/useRandomBodyBackgroundColor";
 
 const GridContainer = styled('div')({
     display: 'grid',
@@ -21,8 +20,6 @@ const Content = styled('div')({
 })
 
 const App = () => {
-    useRandomBodyBackgroundColor(2000)
-
     return (
         <GridContainer>
             <Title>Super Calculating</Title>
